@@ -16,12 +16,14 @@ $(document).ready(function(){
 	tab.on("click", function(){
 		var $this = $(this),
 			current_id = $(this).attr('id');
+			
+
 					
 		tab.not($this).toggleClass("hidden");
 
 		$this.toggleClass('expanded');
 		$(".about_me").toggleClass("hidden");
-		
+		 // $(".about_me").toggle();
 		
 		switch(current_id){
 			case "education":
