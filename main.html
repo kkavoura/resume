@@ -14,22 +14,49 @@
 	<body>			
 
 		<div id="main_container">
-			<h1 class="about_me">About me: </h1>
-			<p class="about_me">Hello! I'm a recent college graduate currently living in downtown Philadelphia, searching for an
+			<h1 class="about_me default">About me: </h1>
+			<p class="about_me default">Hello! I'm a recent college graduate currently living in downtown Philadelphia, searching for an
 				entry level position in web development or in a related field. I have experience in a variety of programming languages 
 				and paradigms,asn sd lsike fosdi thkjs tiu kuhskfu then. Somdfne gsrkan can fosdjfks tgbs argle s jjasdn lsl komlli skfdj 
 				banads aldk colla sdrk.</p>
-			<p class="about_me"> I obtained a Bachelor's degree in Computer Science from the University of Vermont and I'm hoping to be
+			<p class="about_me default"> I obtained a Bachelor's degree in Computer Science from the University of Vermont and I'm hoping to be
 				able to put this to good use. I supplement my lack of professional work experience with various projects to showcase my 
 				knowledge and capabilities. Please feel free to contact me concerning any further questions.</p>
 			<div id="work" class="tab">
-				<i class="fa fa-briefcase fa-3x"></i>
-				<div id="work_content" class="hidden">
-					
+				<i class="fa fa-briefcase fa-3x" id="work_icon_tab"></i>
+				<div id="work_content" class="hidden content">
+					<div id="programming_languages">
+						<h2>Programming Languages</h2>
+						<ul>
+							<li>Javascript</li>
+							<li>Python</li>
+							<li>Java</li>
+							<li>PHP</li>
+							<li>Ocaml</li>
+							<li>R</li>
+							<li>C++</li>
+							<li>Visual Basic</li>
+							<li>MATLAB</li>
+						</ul>
+					</div>
+					<div id="additional_experience">
+						<h2>Additional Experience with</h2>
+							<ul>
+								<li>HTML &amp; CSS</li>
+								<li>JQuery</li>
+								<li>XML, JSON</li>
+								<li>SQL</li>
+								<li>Open Dynamics Engine</li>
+								<li>Numpy &amp; SciPy</li>
+								<li>Adobe Photoshop</li>
+								<li>Microsoft Office</li>
+								<li>GIMP</li><br><br>
+							</ul>
+					</div>
 				</div>
 			</div>
 			<div id="education" class="tab">
-				<div id="education_content" class="hidden">
+				<div id="education_content" class="hidden content">
 					<h2>Education</h2>
 					<span class="subcategory">University of Vermont '12</span>
 						<p>Obtained a Bachelor's degree in Computer Science,
@@ -47,10 +74,10 @@
 							Molecular Biology, Genetics and Forensic Biology.
 						</p>
 				</div>
-				<i class="fa fa-graduation-cap fa-3x"></i>
+				<i class="fa fa-graduation-cap fa-3x" id="education_icon_tab"></i>
 			</div>
 			<div id="contact" class="tab">
-				<div id="contact_content" class="hidden">
+				<div id="contact_content" class="hidden content">
 					<!-- <h2>Contact</h2> -->
 					<div id="contact_info">
 						<span id="kiki">Kiriaki Kavouras</span><br/>
@@ -81,10 +108,11 @@
 					</div>
 					
 				</div>
-				<i class="fa fa-envelope fa-3x"></i>
+				<i class="fa fa-envelope fa-3x" id="contact_icon_tab"></i>
 			</div>
 			<div id="projects" class="tab">
-				<div id="projects_content" class="hidden">
+				<div id="projects_content" class="hidden content">
+					<h2>Projects</h2>
 					<ul>
 						<li><p>Completed a semester long project during the course of my Evolutionary
 								Robotics class utilizing Python and C++ in which I looked at evolution of robot displacement and 
@@ -104,12 +132,14 @@
 						</ul>
 					</ul>	
 				</div>
-				<i class="fa fa-folder-open fa-3x"></i>
+				<i class="fa fa-folder-open fa-3x" id="projects_icon_tab"></i>
 			</div>
 			
-			<i class="fa fa-home fa-4x navigation hidden"></i>
-			<i class="fa fa-folder-open-o fa-4x navigation hidden"></i> 
-			<i class="fa fa-envelope-o fa-4x navigation hidden"></i>
+			<i class="fa fa-home fa-4x navigation hidden" id="home_nav"></i>
+			<i class="fa fa-folder-open fa-4x navigation hidden" id="projects_nav"></i> 
+			<i class="fa fa-envelope fa-4x navigation hidden" id="contact_nav"></i>
+			<i class="fa fa-graduation-cap fa-4x navigation hidden" id="education_nav"></i>
+			<i class="fa fa-briefcase fa-4x navigation hidden" id="work_nav"></i>
 
 			
 		</div>

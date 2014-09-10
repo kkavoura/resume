@@ -6,6 +6,17 @@
 	transition:opacity 0.1s 0.75s;
 }
 
+#additional_experience{
+	border-right:2px solid black;
+	display:inline-block;
+	float:left;
+	height:100%;
+	width:33.3%
+}
+
+#additional_experience ul{
+	list-style-type:none;
+}
 
 body{
 	background-image:url('../images/wood_texture.jpg');
@@ -68,6 +79,13 @@ body{
 	width:40%;
 }
 
+#contact_icon_tab{
+	color:rgba(255,255,255,1);
+	position:absolute;
+	bottom:10%;
+	left:45%;
+}
+
 #contact_info{
 	border-right:2px solid #000000;
 	float:left;
@@ -110,27 +128,7 @@ body{
 	text-align:left;
 }
 
-.fa-briefcase{
-	color:rgba(255,255,255,1);
-	position:absolute;
-	top:10%;
-	left:45%;
-}
-
-.fa-envelope{
-	color:rgba(255,255,255,1);
-	position:absolute;
-	bottom:10%;
-	left:45%;
-}
-.fa-folder-open{
-	color:rgba(255,255,255,1);
-	position:absolute;
-	left:10%;
-	top:40%;
-}
-
-.fa-graduation-cap{
+#education_icon_tab{
 	color:rgba(255,255,255,1);
 	position:absolute;
 	right:7%;
@@ -188,7 +186,25 @@ h2{
 }
 
 .navigation {
-	margin:1%;
+	color:#444;
+}
+
+.navigation.expanded_vertically{ /*ASK HACKETT IF BAD!!!*****************************************************************************/
+	display:block;
+	margin-top:13vh;
+}
+
+.navigation.expanded_vertically.hidden{
+	display:none;
+}
+
+.navigation.expanded_horizontally{
+	display:inline;
+	margin-left:10vw;
+}
+
+.navigation.expanded_horizontally.hidden{
+	display:none;
 }
 
 #or{
@@ -202,6 +218,18 @@ h2{
 	width:5%;
 	vertical-align:middle;
 	padding-top:5%;
+}
+
+#programming_languages{
+	border-right:2px solid #000000;
+	display:inline-block;
+	float:left;
+	height:100%;
+	width:33.3%;
+}
+
+#programming_languages ul{
+	list-style-type:none;
 }
 
 #projects{
@@ -232,6 +260,23 @@ h2{
 	text-align:left;
 }
 
+
+#projects.expanded{
+	height:75%;
+	right:10vw;
+	width:75vw;
+	left:auto;
+	-webkit-transition-property: width, height;
+	-webkit-transition-duration: 0.75s, 0s;
+}
+
+#projects_icon_tab{
+	color:rgba(255,255,255,1);
+	position:absolute;
+	left:10%;
+	top:40%;
+}
+
 .subcategory{
 	font-weight:bold;
 }
@@ -255,10 +300,18 @@ h2{
 #work_content{
 	background-color:rgba(204, 187, 240, 1);
 	bottom:5%;
+	font-size:1.5em;
 	height:75%;
 	left:12.5%;
 	position:absolute;
 	width:75%;
+}
+
+#work_icon_tab{
+	color:rgba(255,255,255,1);
+	position:absolute;
+	top:10%;
+	left:45%;
 }
 
 
@@ -278,7 +331,7 @@ h2{
 	left:10vw;
 	width:75vw;
 	-webkit-transition-property: width, height;
-	-webkit-transition-duration: 1s, 0s;
+	-webkit-transition-duration: 0.75s, 0s;
 }
 
 #main_container.expanded_left{
@@ -334,25 +387,6 @@ h2{
 	width:100%;
 	left:0;
 	bottom:0;
-}
-
-.navigation.expanded_vertically{
-	display:block;
-	margin-top:15vh;
-}
-
-.navigation.expanded_horizontally{
-	display:inline;
-	margin-left:13vw;
-}
-
-#projects.expanded{
-	height:75%;
-	right:10vw;
-	width:75vw;
-	left:auto;
-	-webkit-transition-property: width, height;
-	-webkit-transition-duration: 1s, 0s;
 }
 
 #work.expanded{
