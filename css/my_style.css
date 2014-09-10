@@ -1,7 +1,7 @@
 
 
 .about_me{
-	font-size:1.5em;
+	font-size:1.35em;
 	margin: 3% 5%;
 	transition:opacity 0.1s 0.75s;
 }
@@ -25,6 +25,11 @@ body{
 
 #comments{
 	width:100%;
+}
+
+#cont{
+	color:#47B56F;
+	font-size:1.5em;
 }
 
 #contact{
@@ -94,10 +99,19 @@ body{
 	width:50%;
 }
 
+#contact_nav:hover{
+	color:#47B56F;
+}
+
 #kiki{
  	display:inline-block;
  	margin-top:43%;
  }
+
+#degree{
+	color:#FE4455;
+	font-size:1.5em;
+}
 
 #education{
 	background-color: rgba(254,68,85,0.5);
@@ -135,6 +149,15 @@ body{
 	top:40%;
 }
 
+#education_nav:hover{
+	color:#E34FDE;
+}
+
+#experience{
+	color:#9A58DB;
+	font-size:1.5em;
+}
+
 h2{
 	margin:1%;
 	text-transform:uppercase;
@@ -142,6 +165,10 @@ h2{
 
 .hidden{
 	display:none;
+}
+
+#home_nav:hover{
+	color:#999;
 }
 
 .visually_hidden{
@@ -187,6 +214,7 @@ h2{
 
 .navigation {
 	color:#444;
+	cursor:pointer;
 }
 
 .navigation.expanded_vertically{ /*ASK HACKETT IF BAD!!!*****************************************************************************/
@@ -230,6 +258,11 @@ h2{
 
 #programming_languages ul{
 	list-style-type:none;
+}
+
+#proj{
+	color:#2CB7F2;
+	font-size:1.5em;
 }
 
 #projects{
@@ -277,6 +310,10 @@ h2{
 	top:40%;
 }
 
+#projects_nav:hover{
+	color:#2CB7F2;
+}
+
 .subcategory{
 	font-weight:bold;
 }
@@ -312,6 +349,10 @@ h2{
 	position:absolute;
 	top:10%;
 	left:45%;
+}
+
+#work_nav:hover{
+	color:#9A58DB;
 }
 
 

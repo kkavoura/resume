@@ -128,6 +128,7 @@ $(document).ready(function(){
 		navigation.addClass("expanded_horizontally");
 		$("#work_nav").addClass("hidden"); //$THIS? 
 	});
+	
 
 
 

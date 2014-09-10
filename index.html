@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Kiriaki Kavouras' resume</title>	
+		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/my_style.css"/>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="scripts/ui2.js"></script>
+
+
+
+	</head>
+	<body>			
+
+		<div id="main_container">
+			<h1 class="about_me default">About me: </h1>
+			<p class="about_me default">Hello! I'm a recent college graduate currently living in downtown Philadelphia, searching for an
+				entry level position in web development or in another programming related field. I have experience in a variety of programming languages 
+				and paradigms, as well as some graphic design background. I find the current fast-growing state of the web to be fascinating, 
+				but I'm also interested in other aspects of computing such as game development, machine learning and Bioinformatics.</p>
+			<p class="about_me default"> I obtained a <span id="degree">Bachelor's degree</span> in Computer Science from the University of Vermont and I'm hoping to be
+				able to put this to good use. I supplement my lack of professional work <span id="experience">experience</span> with various <span id="proj">projects</span> to showcase my 
+				knowledge and capabilities. Please feel free to <span id="cont">contact me</span> concerning any further questions.</p>
+			<div id="work" class="tab">
+				<i class="fa fa-briefcase fa-3x" id="work_icon_tab"></i>
+				<div id="work_content" class="hidden content">
+					<div id="programming_languages">
+						<h2>Programming Languages</h2>
+						<ul>
+							<li>Javascript</li>
+							<li>Python</li>
+							<li>Java</li>
+							<li>PHP</li>
+							<li>Ocaml</li>
+							<li>R</li>
+							<li>C++</li>
+							<li>Visual Basic</li>
+							<li>MATLAB</li>
+						</ul>
+					</div>
+					<div id="additional_experience">
+						<h2>Additional Experience with</h2>
+							<ul>
+								<li>HTML &amp; CSS</li>
+								<li>JQuery</li>
+								<li>XML, JSON</li>
+								<li>SQL</li>
+								<li>Open Dynamics Engine</li>
+								<li>Numpy &amp; SciPy</li>
+								<li>Adobe Photoshop</li>
+								<li>Microsoft Office</li>
+								<li>GIMP</li><br><br>
+							</ul>
+					</div>
+				</div>
+			</div>
+			<div id="education" class="tab">
+				<div id="education_content" class="hidden content">
+					<h2>Education</h2>
+					<span class="subcategory">University of Vermont '12</span>
+						<p>Obtained a Bachelor's degree in Computer Science,
+						with relevant courses in:</p>
+						<ul>
+							<li>Evolutionary Robotics</li>
+							<li>Algorithm Design and Analysis</li>
+							<li>Web Design</li>
+							<li>Graphic Design</li>
+							<li>Database Systems</li>
+							<li>Human Computer Interaction</li>
+							<li>Probability and Statistics for Computer Science</li>
+						</ul>
+						<p>In addition I completed a minor in Biology with emphasis on
+							Molecular Biology, Genetics and Forensic Biology.
+						</p>
+				</div>
+				<i class="fa fa-graduation-cap fa-3x" id="education_icon_tab"></i>
+			</div>
+			<div id="contact" class="tab">
+				<div id="contact_content" class="hidden content">
+					<!-- <h2>Contact</h2> -->
+					<div id="contact_info">
+						<span id="kiki">Kiriaki Kavouras</span><br/>
+						<span>kiriaki.kavouras@gmail.com</span><br/>
+						<span>267-755-8788</span><br/>
+					</div>
+					<div id="or">
+						OR
+					</div>
+					<div id="contact_form_container">
+						<form id="contact_form">
+							<fieldset>
+								<legend>Your details:</legend>
+								<label for="name">Name:*</label>
+								<input id="name" name="name" type="text" placeholder="First and last name" required><br>
+								<label for="email">Email:*</label>
+								<input id="email" name="email" type="text" required><br>
+								<label for="phone">Phone:</label>
+								<input id="phone" name="phone" type="text">
+							</fieldset>
+							<fieldset>
+								<legend>Comments:*</legend>
+								<textarea id="comments" name="comments"  rows="10" cols="40" required 
+									placeholder="Please let me know your preferred method of communication and I will respond promptly."></textarea>
+							</fieldset>
+							<button type="submit" id="contact_button">Contact me!</button>
+						</form>
+					</div>
+					
+				</div>
+				<i class="fa fa-envelope fa-3x" id="contact_icon_tab"></i>
+			</div>
+			<div id="projects" class="tab">
+				<div id="projects_content" class="hidden content">
+					<h2>Projects</h2>
+					<ul>
+						<li><p>Completed a semester long project during the course of my Evolutionary
+								Robotics class utilizing Python and C++ in which I looked at evolution of robot displacement and 
+								comparison between a quadruped and a hexapod model.
+								Summary can be found<a href="robot.html"> HERE</a>.</p></li>
+						<li><p>I am currently working on a Javascript implementation of <a href="Jahtzee/index.html" target="_blank">Yahtzee</a></p></li>
+						<li><p>Working on a web application that takes housing prices and crime rates for Philadelphia neighborhoods through OpenDataPhilly 
+								APIs to analyze data and create predictive models</p></li>
+						<li><p>I am also currently working on a larger version of a project I begun for my Data Structures class at the University of Vermont,
+								 which featured a very simplistic virtual genotype to phenotype mapping game utilizing mating, as well as addition, deletion and point mutations.</p></li>
+						<li><p>Some areas in Computer Science that I would like to get
+							more acquainted with include:</p></li>
+						<ul>
+							<li>Bioinformatics</li>
+							<li>Game Development</li>
+							<li>Natural Language Processing</li>
+						</ul>
+					</ul>	
+				</div>
+				<i class="fa fa-folder-open fa-3x" id="projects_icon_tab"></i>
+			</div>
+			
+			<i class="fa fa-home fa-4x navigation hidden" id="home_nav"></i>
+			<i class="fa fa-folder-open fa-4x navigation hidden" id="projects_nav"></i> 
+			<i class="fa fa-envelope fa-4x navigation hidden" id="contact_nav"></i>
+			<i class="fa fa-graduation-cap fa-4x navigation hidden" id="education_nav"></i>
+			<i class="fa fa-briefcase fa-4x navigation hidden" id="work_nav"></i>
+
+			
+		</div>
+
+	</body>
+</html>
