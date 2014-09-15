@@ -1,0 +1,257 @@
+body{
+	background-image: url("../images/wood_texture.jpg");
+	height:100%;
+	font-family: 'Open Sans Condensed', sans-serif;
+	margin:0;
+	overflow-x:hidden;
+	width:100%;
+}
+
+header{
+	background-color: #F0E9C0;
+	box-shadow:0px 2px 5px #525252;
+	margin:0 auto;
+	margin-top:30px;
+	padding:0.75%;
+	position:relative;
+	text-align:center;
+	width:25%;
+}
+
+header:before{
+	content:"";
+	background:#111;
+	bottom:15px;
+	box-shadow:0 15px 10px #333;
+	left:10px;
+	max-width:300px;
+	position:absolute;
+	top:80%;
+	transform:rotate(-5deg);
+	width:35%;	
+	z-index:-1;
+}
+
+html{
+	height:100%;
+	width:100%;
+}
+
+
+img{
+	max-width:100%;
+	max-height:100%;
+}
+
+
+
+
+
+.dice{
+	height:75px;
+	width:79px;
+	background-color:#fff;
+	border:0.5em solid rgba(120,196,235,0);
+	background-clip:padding-box;
+	margin:0.5em;
+	display:inline-block;
+	border-radius:5px;
+	max-height:20%;
+}
+
+
+#rollButton{
+	margin:auto;
+	height:50px;
+	width:90px;
+	color:#E8D1B7;
+	display:inline-block;
+	border-radius:10%;
+	position:relative;
+	left:20%;
+	font-size:2em;
+	font-family:"Trebuchet MS";
+	text-align:center;
+	padding-top:1%;
+	z-index:2;
+	background-image: linear-gradient(bottom, rgb(255,147,64) 35%, rgb(224,179,115) 68%);
+	background-image: -o-linear-gradient(bottom, rgb(255,147,64) 35%, rgb(224,179,115) 68%);
+	background-image: -moz-linear-gradient(bottom, rgb(255,147,64) 35%, rgb(224,179,115) 68%);
+	background-image: -webkit-linear-gradient(bottom, rgb(255,147,64) 35%, rgb(224,179,115) 68%);
+	background-image: -ms-linear-gradient(bottom, rgb(255,147,64) 35%, rgb(224,179,115) 68%);
+	
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.35, rgb(255,147,64)),
+		color-stop(0.68, rgb(224,179,115))
+	);
+		
+	box-shadow:2px 2px 2px #383838;
+}
+
+#rollButton:hover{
+	cursor:pointer;
+	background-image: linear-gradient(bottom, rgb(44,54,115) 17%, rgb(102,118,189) 59%);
+	background-image: -o-linear-gradient(bottom, rgb(44,54,115) 17%, rgb(102,118,189) 59%);
+	background-image: -moz-linear-gradient(bottom, rgb(44,54,115) 17%, rgb(102,118,189) 59%);
+	background-image: -webkit-linear-gradient(bottom, rgb(44,54,115) 17%, rgb(102,118,189) 59%);
+	background-image: -ms-linear-gradient(bottom, rgb(44,54,115) 17%, rgb(102,118,189) 59%);
+	
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.17, rgb(44,54,115)),
+		color-stop(0.59, rgb(102,118,189))
+	);
+}
+
+#rollButton:active{
+/*	top:7.5%;*/
+	color:#FFF;
+	top:1px;
+	background-image: linear-gradient(bottom, rgb(137,154,245) 2%, rgb(105,118,204) 51%);
+	background-image: -o-linear-gradient(bottom, rgb(137,154,245) 2%, rgb(105,118,204) 51%);
+	background-image: -moz-linear-gradient(bottom, rgb(137,154,245) 2%, rgb(105,118,204) 51%);
+	background-image: -webkit-linear-gradient(bottom, rgb(137,154,245) 2%, rgb(105,118,204) 51%);
+	background-image: -ms-linear-gradient(bottom, rgb(137,154,245) 2%, rgb(105,118,204) 51%);
+	
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.02, rgb(137,154,245)),
+		color-stop(0.51, rgb(105,118,204))
+	);
+}
+
+
+table{
+	background-color:#88FFFF;
+	border:0.2em solid #00665E;
+	display: inline-block;
+	margin-bottom: 6%;
+	margin-top:6%;
+}
+
+table.left{
+	margin-left:16%;
+	margin-right:5%;
+}
+
+table.right{
+	margin-left:5%;
+	margin-right: 16%;
+}
+
+
+td{
+	border:0.1em solid #00665E;
+	text-align:center;
+}
+
+.category:hover{
+	background-color:#00665E;
+}
+
+
+th{
+	border:0.15em solid #00665E;
+	background-color:#88FFFF;
+}
+
+.highlighted {
+	background-color:#a32;
+}
+
+#filter{
+	background-color:#000;
+	height:100%;
+	width:105%;
+	position:fixed;
+	top:0;
+	left:-1%;
+	opacity:0.75;
+	z-index:1;
+}
+
+.category{
+	cursor:pointer;
+}
+
+
+#rollCounter{
+	width:50px;
+	height:50px;
+	background-color:#000;
+	opacity:0.8;
+	border-radius:50%;
+	display:inline-block;
+	position:relative;
+	left:20%;
+	margin-left:3%;
+	color:white;
+	text-align:center;
+	overflow:hidden;
+	font-size:2em;
+}
+
+#diceContainer{
+	width:75%;
+	margin:5% auto;
+}
+
+#rollContainer{
+	width:50%;
+/*	height:10%;*/
+	margin:auto;
+	position:relative;
+}
+
+#container{
+	background-color:#5DCEC6;
+	background-clip:padding-box;
+	border:50px solid black;
+	border-radius:50px;
+	box-shadow: 5px 5px 10px #333;
+	display:inline-block;
+	height:auto;
+	left:-13%;
+	margin-top: 20px;
+	position:relative;
+	vertical-align:top;
+	width:50%;
+}
+	
+#instructions_container{
+	width:35%;
+	height:auto;
+	background-color:#E06709;
+	display:inline-block;	
+	position:relative;
+	left:-31%;
+	margin-top:90px;
+}
+
+#instructions_inner{
+	width:80%;
+	margin:2%;
+	padding:2%;
+	background-color:#FFB073;
+	top:2%;
+	right:5%;
+	display:inline-block;
+}
+
+
+#arrowPic{
+	display:inline-block;
+	top:40%;
+	position:absolute;
+}
+
+
+/*Ask Hackett why rollCounter won't use a percentage for top but has percentage for left. Follow up to parent element? Maybe no height defined?*/ 
+/*Ask Hackett why doesnt just push container over, but goes under instead but when width changes it pushes */
