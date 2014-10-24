@@ -7,7 +7,8 @@ run = function(){
 		$category = $(".category");
 		$yahtzee = $("#12");
 		$instructions_container = $("#instructions_container");
-		$container = $("#container");
+		$main_container = $("#main_container");
+		$this = $(this);
 		$arrowPic = $("#arrowPic");
 		
 		$rollButton.click(function (){
@@ -36,19 +37,7 @@ run = function(){
 			$this = $(this);
 			var diceObject = ui_id_to_logic($this.attr("id"));
 			diceObject.toggleHeld();
-			if(diceObject.isHeld()){
-				$this.animate({
-					"backgroundColor":"#FFB073",
-					"borderColor":"rgba(224,103,9,1)"
-
-				});
-			}
-			else{
-				$this.animate({
-					"backgroundColor":"white",
-					"borderColor":"rgba(224,103,9,0)"
-				});
-			}
+			$this.toggleClass("held");
 		});
 		
 		$yahtzee.on("click", function(){
@@ -68,18 +57,9 @@ run = function(){
 	
 			});
 			
-		$instructions_container.toggle(
-			function(){
-				$instructions_container.animate({"left":"0"});
-				$container.animate({"left":"2%"});
-				$arrowPic.attr("src", "images/pointLeft.png");
-			},
-			function(){
-				$instructions_container.animate({"left":"-31%"});
-				$container.animate({"left":"-10%"});
-				$arrowPic.attr("src", "images/pointRight.png");
-			}
-		);
+		$instructions_container.on("click", function(){
+			$instructions_container.toggleClass("expanded");
+		});
 		
 		
 	});
@@ -119,12 +99,6 @@ ui_id_to_logic = function(diceID){
 	}
 }
 
-//Sets the animation for all the dice back to the original, unheld state
-removeHeldAnimation = function(){
-	$(".dice").animate({"backgroundColor":"white",
-					"borderColor":"rgba(120,196,235,0)",							
-				});
-}
 
 //Changes the display of the yahtzee bonus category to reflect its current value
 changeBonusDisplay = function(){

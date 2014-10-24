@@ -126,6 +126,7 @@ function printScorecard(){
 //If the category being scored is Yahtzee and a yahtzee has already been scored, 100 points are added to the
 //yahtzeeBonus category instead.
 function enterScore(category, score){
+	$dice=$(".dice");
 	
 	if(checkCompletion()){
 		alert("You have finished the game!");
@@ -138,12 +139,12 @@ function enterScore(category, score){
 		var yahtzeeBonusCategory = categoryArray[13];
 		if(newCategory.isAlreadyScored()){
 			yahtzeeBonusCategory.setScore(100);
-			removeHeldAnimation();
+			$dice.removeClass("held");
 			clearHeld();
 			return;
 		}
 		newCategory.setScore(score);
-		removeHeldAnimation();
+		$dice.removeClass("held");
 		clearHeld();
 		
 		return;
@@ -153,8 +154,8 @@ function enterScore(category, score){
 	}
 	newCategory.setScore(score);
 	clearHeld();
+	$dice.removeClass("held");
 
-	removeHeldAnimation();
 }
 
 //Toggles the held dice making them all unheld
@@ -218,7 +219,7 @@ function scoreCategory(number){
 			}
 			break;
 		case 10:
-			if(checkSmallStraight()){
+			if(checkForStraight(4)){
 				enterScore(10,30);
 			}
 			else{
@@ -226,7 +227,7 @@ function scoreCategory(number){
 			}
 			break;
 		case 11:
-			if(checkLargeStraight()){
+			if(checkForStraight(5)){
 				enterScore(11,40);
 			}
 			else{
@@ -357,11 +358,12 @@ function checkYahtzee(){
 //been scored, returns false.
 function checkCompletion(){
 
-	for(var i=0; i<14; i++){
+	for(var i=0; i<categoryArray.length-1; i++){
 		if(categoryArray[i].isAlreadyScored()==false){
 			return false;
 		}
 	}
+	alert("Game over");
 	return true;
 }
 
@@ -450,3 +452,52 @@ getFinalScore = function(){
 	
 //Consider changing checkCompletion to take an argument for up to where to check
 //Why is yahtzee bonus score not showing? may be ui
+
+
+
+//Checks for a straight of a certain length (4 for small, 5 for large)
+//Sorts values, removes duplicates and checks for desired straight
+//IN: length of straight(int)
+//OUT: bool indicating if it was achieved or not
+function checkForStraight(length){
+	var length = length,
+		diceValues = []
+		counter = 0;
+
+	for(var i=0; i<diceArray.length; i++){
+		diceValues[i]=diceArray[i].getValue();
+	}
+	diceValues.sort();
+	
+	for(var i=0; i<diceValues.length-1; i++){
+		if(diceValues[i]===diceValues[i+1]){
+			diceValues.splice(i+1,1);
+			i-=1;
+		}
+	}
+
+	for(var i=0; i<diceValues.length-1; i++){
+		if(diceValues[i]+1===diceValues[i+1]){
+			counter+=1;
+		}
+	}
+	if(counter>=length-1){
+		return true;
+	}
+	else{
+		return false;
+	}
+
+}
+
+
+///Sets the roll to a yahtzee roll, used for debugging
+function setYahtzee(){
+	var diceValues = [];
+
+	for(var i=0; i<diceArray.length; i++){
+		diceArray[i].setValue(4);
+		diceValues[i]=diceArray[i].getValue();
+	}
+	console.log(diceValues);
+}

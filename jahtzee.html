@@ -4,12 +4,14 @@
 	<title> Javascript Yahtzee!</title>
 	<link rel="stylesheet" type="text/css" href="css/jahtzee_style.css">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
 	<header>
 		<h1>Yahtzee!</h1>
 	</header>
 
 	<div id="instructions_container">
+		<i class="fa fa-info-circle fa-3x" id="instructions_button"></i>
 		<div id="instructions_inner">
 			 Yahtzee involves rolling a total of 5 dice and scoring certain categories
 			based on the outcome of those rolls. In one turn you can roll up to 3 times, 
@@ -36,9 +38,9 @@
 			    <li>Yahtzee - 5 of a kind (50 pts for 1st, 100pts for each subsequent yahtzee)	</li>
 			  </ul>
 		</div>
-		<img id="arrowPic" src="images/pointRight.png"/>
 	</div>
-	<div id="container">
+	<div id="main_container">
+			<div id="filter"></div>
 		<div id="diceContainer">
 			<div class="dice" id='i'><img></div>
 			<div class="dice" id='ii'><img></div>
@@ -137,7 +139,7 @@
 		</div>
 	</div>
 
-	<div id="filter"></div>
+
 	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>

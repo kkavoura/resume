@@ -7,6 +7,29 @@ body{
 	width:100%;
 }
 
+.dice{
+	cursor: pointer;
+	height:75px;
+	width:79px;
+	background-color:#fff;
+	border:8px solid rgba(255,255,255,0);
+	background-clip:padding-box;
+	margin:7px;
+	display:inline-block;
+	border-radius:5px;
+}
+
+#diceContainer{
+	margin:2%;
+	margin-left: 15%;
+}
+
+.held{
+	background-color: #78BDBB;
+	border:8px solid #3C6E6C;
+	margin:7px;
+}
+
 header{
 	background-color: #F0E9C0;
 	box-shadow:0px 2px 5px #525252;
@@ -43,94 +66,56 @@ img{
 	max-height:100%;
 }
 
+#instructions_button{
+	color: white;
+	position:absolute;
+	right:2%;
+	top:43%;
 
+}
 
-
-
-.dice{
-	height:75px;
-	width:79px;
-	background-color:#fff;
-	border:0.5em solid rgba(120,196,235,0);
+#main_container{
+	background-color: #B2C0ED;
 	background-clip:padding-box;
-	margin:0.5em;
+	border:50px solid rgba(59, 77, 152, 0.5);
 	display:inline-block;
-	border-radius:5px;
-	max-height:20%;
+	margin-top:20px;
+	position:relative;
+	width:800px;
 }
 
 
 #rollButton{
-	margin:auto;
-	height:50px;
-	width:90px;
+	background-color: #3C5193;
+	box-shadow:2px 2px 2px #383838;
 	color:#E8D1B7;
 	display:inline-block;
-	border-radius:10%;
-	position:relative;
+	font-size: 1.5em;
+	height:50px;
 	left:20%;
-	font-size:2em;
-	font-family:"Trebuchet MS";
+	margin:auto;
+	padding-top: 4%;
+	position:relative;
 	text-align:center;
-	padding-top:1%;
-	z-index:2;
-	background-image: linear-gradient(bottom, rgb(255,147,64) 35%, rgb(224,179,115) 68%);
-	background-image: -o-linear-gradient(bottom, rgb(255,147,64) 35%, rgb(224,179,115) 68%);
-	background-image: -moz-linear-gradient(bottom, rgb(255,147,64) 35%, rgb(224,179,115) 68%);
-	background-image: -webkit-linear-gradient(bottom, rgb(255,147,64) 35%, rgb(224,179,115) 68%);
-	background-image: -ms-linear-gradient(bottom, rgb(255,147,64) 35%, rgb(224,179,115) 68%);
-	
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0.35, rgb(255,147,64)),
-		color-stop(0.68, rgb(224,179,115))
-	);
-		
-	box-shadow:2px 2px 2px #383838;
+	width:90px;
+	z-index:2;	
 }
 
 #rollButton:hover{
+	background-color: #334479;
 	cursor:pointer;
-	background-image: linear-gradient(bottom, rgb(44,54,115) 17%, rgb(102,118,189) 59%);
-	background-image: -o-linear-gradient(bottom, rgb(44,54,115) 17%, rgb(102,118,189) 59%);
-	background-image: -moz-linear-gradient(bottom, rgb(44,54,115) 17%, rgb(102,118,189) 59%);
-	background-image: -webkit-linear-gradient(bottom, rgb(44,54,115) 17%, rgb(102,118,189) 59%);
-	background-image: -ms-linear-gradient(bottom, rgb(44,54,115) 17%, rgb(102,118,189) 59%);
-	
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0.17, rgb(44,54,115)),
-		color-stop(0.59, rgb(102,118,189))
-	);
 }
 
 #rollButton:active{
-/*	top:7.5%;*/
+	background-color: #233057;
 	color:#FFF;
 	top:1px;
-	background-image: linear-gradient(bottom, rgb(137,154,245) 2%, rgb(105,118,204) 51%);
-	background-image: -o-linear-gradient(bottom, rgb(137,154,245) 2%, rgb(105,118,204) 51%);
-	background-image: -moz-linear-gradient(bottom, rgb(137,154,245) 2%, rgb(105,118,204) 51%);
-	background-image: -webkit-linear-gradient(bottom, rgb(137,154,245) 2%, rgb(105,118,204) 51%);
-	background-image: -ms-linear-gradient(bottom, rgb(137,154,245) 2%, rgb(105,118,204) 51%);
-	
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0.02, rgb(137,154,245)),
-		color-stop(0.51, rgb(105,118,204))
-	);
 }
 
 
 table{
-	background-color:#88FFFF;
-	border:0.2em solid #00665E;
+	background-color:#fff;
+	border:0.2em solid #3C5193;
 	display: inline-block;
 	margin-bottom: 6%;
 	margin-top:6%;
@@ -148,18 +133,19 @@ table.right{
 
 
 td{
-	border:0.1em solid #00665E;
+	border:0.1em solid #3C5193;
 	text-align:center;
 }
 
 .category:hover{
 	background-color:#00665E;
+	color:#fff;
 }
 
 
 th{
-	border:0.15em solid #00665E;
-	background-color:#88FFFF;
+	border:0.15em solid #3C5193;
+	background-color:#78BDBB;
 }
 
 .highlighted {
@@ -169,10 +155,10 @@ th{
 #filter{
 	background-color:#000;
 	height:100%;
-	width:105%;
-	position:fixed;
+	width:100%;
+	position:absolute;
 	top:0;
-	left:-1%;
+	left:0;
 	opacity:0.75;
 	z-index:1;
 }
@@ -191,6 +177,7 @@ th{
 	display:inline-block;
 	position:relative;
 	left:20%;
+	margin-bottom: -4%;
 	margin-left:3%;
 	color:white;
 	text-align:center;
@@ -198,10 +185,7 @@ th{
 	font-size:2em;
 }
 
-#diceContainer{
-	width:75%;
-	margin:5% auto;
-}
+
 
 #rollContainer{
 	width:50%;
@@ -210,46 +194,40 @@ th{
 	position:relative;
 }
 
-#container{
-	background-color:#5DCEC6;
-	background-clip:padding-box;
-	border:50px solid black;
-	border-radius:50px;
-	box-shadow: 5px 5px 10px #333;
-	display:inline-block;
-	height:auto;
-	left:-13%;
-	margin-top: 20px;
-	position:relative;
-	vertical-align:top;
-	width:50%;
-}
-	
+
+
 #instructions_container{
-	width:35%;
-	height:auto;
-	background-color:#E06709;
-	display:inline-block;	
-	position:relative;
-	left:-31%;
-	margin-top:90px;
+	background-color: #3C5193;
+	box-shadow: 2px 5px 5px #333;
+	display:inline-block;
+	left:0;
+	margin-left:-435px;
+	margin-right:18%;
+	position: relative;
+	top:-45px;
+	transition:1s;
+	width:500px;
 }
+
+#instructions_container:hover:not(.expanded){
+	background-color: #24366E;
+	left:10px;
+	transition:0.2s;
+}
+
+#instructions_container.expanded{
+	margin-left: 0;
+	margin-right:5%;
+	transition:1s;
+}
+
 
 #instructions_inner{
 	width:80%;
 	margin:2%;
 	padding:2%;
-	background-color:#FFB073;
-	top:2%;
-	right:5%;
+	background-color:#B2C0ED;
 	display:inline-block;
-}
-
-
-#arrowPic{
-	display:inline-block;
-	top:40%;
-	position:absolute;
 }
 
 
