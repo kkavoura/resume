@@ -42,7 +42,7 @@ function Category(){
 	this.setScore = function(newScore){
 		currentScore += newScore;
 		scored = true;
-		rollCounter=0;
+		// rollCounter=0;
 		console.log("Score was set to ", newScore);
 	}
 	
@@ -100,6 +100,7 @@ function roll(){
 	console.log(diceArray);
 	printValues();
 	rollCounter +=1;
+	justScored = false;
 }
 
 
@@ -122,41 +123,43 @@ function printScorecard(){
 
 
 
-///Takes a certain score and category. Enters the category in the score if has not already had a score entered.
-//If the category being scored is Yahtzee and a yahtzee has already been scored, 100 points are added to the
-//yahtzeeBonus category instead.
-function enterScore(category, score){
-	$dice=$(".dice");
+// ///Takes a certain score and category. Enters the score in the category if it has not already had a score entered.
+// //If the category being scored is Yahtzee and a yahtzee has already been scored, 100 points are added to the
+// //yahtzeeBonus category instead.
+// //IN: two numbers corresponding to the score and the category in which to enter it(int, int)
+// //OUT: --
+// function enterScore(category, score){
+// 	$dice=$(".dice");
 	
-	if(checkCompletion()){
-		alert("You have finished the game!");
-		var finalScore = getFinalScore();
-		alert("Your final score is", finalScore);
-	}
-	var newCategory = categoryArray[category-1];
+// 	if(checkCompletion()){
+// 		alert("You have finished the game!");
+// 		var finalScore = getFinalScore();
+// 		alert("Your final score is", finalScore);
+// 	}
+// 	var newCategory = categoryArray[category-1];
 	
-	if (newCategory===yahtzee){
-		var yahtzeeBonusCategory = categoryArray[13];
-		if(newCategory.isAlreadyScored()){
-			yahtzeeBonusCategory.setScore(100);
-			$dice.removeClass("held");
-			clearHeld();
-			return;
-		}
-		newCategory.setScore(score);
-		$dice.removeClass("held");
-		clearHeld();
+// 	if (newCategory===yahtzee){
+// 		var yahtzeeBonusCategory = categoryArray[13];
+// 		if(newCategory.isAlreadyScored()){
+// 			yahtzeeBonusCategory.setScore(100);
+// 			$dice.removeClass("held");
+// 			clearHeld();
+// 			return;
+// 		}
+// 		newCategory.setScore(score);
+// 		$dice.removeClass("held");
+// 		clearHeld();
 		
-		return;
-	}
-	if (newCategory.isAlreadyScored()){
-		return;
-	}
-	newCategory.setScore(score);
-	clearHeld();
-	$dice.removeClass("held");
+// 		return;
+// 	}
+// 	if (newCategory.isAlreadyScored()){
+// 		return;
+// 	}
+// 	newCategory.setScore(score);
+// 	clearHeld();
+// 	$dice.removeClass("held");
 
-}
+// }
 
 //Toggles the held dice making them all unheld
 function clearHeld(){
@@ -168,16 +171,17 @@ function clearHeld(){
 }
 
 
-//Takes as input a number, calculates the score for the category corresponding to that number and then calls enterScore to enter it.
-//Other than 1-6 which intuitivelly correspond to their equivalent number/top level categories, the following are associated:
-//  7: three-of-a-kind
-//  8: four-of-a-kind
-//  9: full house
-// 10: Small straight
-// 11: Large straight
-// 12: Yahtzee
-// 13: Chance
-
+//Takes as input a number corresponding to a category, calculates the score for that category and then calls enterScore to enter it.
+//0-5: 1s through 6s
+//  6: three-of-a-kind
+//  7: four-of-a-kind
+//  8: full house
+// 9: Small straight
+// 10: Large straight
+// 11: Yahtzee
+// 12: Chance
+//IN: nummber correspoding to category to be scored(int)
+//OUT: --
 function scoreCategory(number){
 	
 	var sumOfAllDice = 0;		
@@ -185,70 +189,112 @@ function scoreCategory(number){
 		sumOfAllDice += i*occurs(i);
 	}
 	
-	if(number>=1 && number<=6){			//If the number is between 1-6 this will be scored in the number categories
-		var counter = occurs(number);  //(top half of game)
-		var score = counter*number;
-		category = number;
-		enterScore(category,score);
+	if(number>=0 && number<=5){			//If the number is between 1-6 this will be scored in the numerical categories
+		var score = occurs(number+1)*(number+1);
+		enterScore(number,score);
 		return;
 	}
 	
-	switch(number){							
-		case 7:
+	switch(number){						//Special cases
+		case 6:
 			if(checkThreeKind()){
-				enterScore(7, sumOfAllDice);
+				enterScore(6, sumOfAllDice);
+			}
+			else{
+				enterScore(6,0);
+			}
+			break;
+		case 7:
+			if(checkFourKind()){
+				enterScore(7,sumOfAllDice);
 			}
 			else{
 				enterScore(7,0);
 			}
 			break;
 		case 8:
-			if(checkFourKind()){
-				enterScore(8,sumOfAllDice);
+			if(checkFullHouse()){
+				enterScore(8, 25);
 			}
 			else{
 				enterScore(8,0);
 			}
 			break;
 		case 9:
-			if(checkFullHouse()){
-				enterScore(9, 25);
+			if(checkForStraight(4)){
+				enterScore(9,30);
 			}
 			else{
 				enterScore(9,0);
 			}
 			break;
 		case 10:
-			if(checkForStraight(4)){
-				enterScore(10,30);
+			if(checkForStraight(5)){
+				enterScore(10,40);
 			}
 			else{
 				enterScore(10,0);
 			}
 			break;
 		case 11:
-			if(checkForStraight(5)){
-				enterScore(11,40);
+			if(checkYahtzee()){
+				enterScore(11,50);
 			}
 			else{
 				enterScore(11,0);
 			}
 			break;
 		case 12:
-			if(checkYahtzee()){
-				enterScore(12,50);
-			}
-			else{
-				enterScore(12,0);
-			}
-			break;
-		case 13:
-			enterScore(13,sumOfAllDice);
+			enterScore(12,sumOfAllDice);
 			break;
 		default:
 			console.log("Wrong category entered, please try again.");
 	}
 	
+}
+
+
+//NEW ENTERSCORE
+//Takes in a score and a number corresponding to the category in which to enter it.
+//If successful resets held dice so that new turn can begin.
+//IN: int corresponding to category to score, int score
+//OUT:--
+function enterScore(category, score){
+	if(!$.isNumeric(category)||category<0||category>13){
+		alert("Invalid category, try again!")
+		return;
+	}
+	
+	if(category!==11){								//Every category but Yahtzee
+		if(categoryArray[category].isAlreadyScored()){
+			alert("Category already scored, please choose another!"); //*******Add a ROLL button disabler here?
+			return
+		}
+		categoryArray[category].setScore(score);
+		justScored=true;
+	}
+
+	if(category===11){ 							//Special case for entering a Yahtzee score
+		if(categoryArray[11].isAlreadyScored()){
+			categoryArray[13].setScore(100);
+			justScored = true;
+		}
+		else{
+			categoryArray[11].setScore(50);
+			justScored = true;
+		}
+	}
+
+	$(".dice").removeClass("held");				//Reset dice and rollCounter in any case
+	clearHeld();
+	rollCounter=0;
+
+	if(checkCompletion()){
+		alert("You have finished the game!");
+		alert("Your final score is", getFinalScore());
+	}
+
+
 }
 
 
@@ -392,68 +438,6 @@ getFinalScore = function(){
 	return sum;
 }
 
-  //**********************************************************************//
- //							RUNTIME                                      //
-//**********************************************************************// 
-
-	var die1 = new Dice(),
-		die2 = new Dice(),
-		die3 = new Dice(),
-		die4 = new Dice(),
-		die5 = new Dice(),
-		ones = new Category(),
-		twos = new Category(),
-		threes = new Category(),
-		fours = new Category(),
-		fives = new Category(),
-		sixes = new Category(),
-		subtotal = new Category(),
-		bonus = new Category(),
-		threeKind = new Category(),
-		fourKind = new Category(),
-		fullHouse = new Category(),
-		smallStraight = new Category(),
-		largeStraight = new Category(),
-		yahtzee = new Category(),
-		yahtzeeBonus = new Category(),
-		chance = new Category(),
-		grandTotal = new Category();
-		
-	 diceArray = [die1, die2, die3, die4, die5];
-	 categoryArray = [ones,twos,threes,fours,fives,sixes,threeKind,fourKind,fullHouse,smallStraight,largeStraight,yahtzee,chance,yahtzeeBonus];
-	 rollCounter = 0;	
-	heldArray = [die1.is]
-	
-	//Prints out the current roll
-	for (var i=0; i<diceArray.length; i++){
-		//console.log(diceArray[i].getValue());
-		console.dir(diceArray[i]);
-	}
-	
-		
-	
-	ones.setDescription("The sum of all the dice with the value 1.");
-	twos.setDescription("The sum of all the dice with the value 2.");
-	threes.setDescription("The sum of all the dice with the value 3.");
-	fours.setDescription("The sum of all the dice with the value 4.");
-	fives.setDescription("The sum of all the dice with the value 5.");
-	sixes.setDescription("The sum of all the dice with the valie 6.");
-	subtotal.setDescription("The sum of all the scores 1-6.");
-	bonus.setDescription("If the subtotal is over than 65, an extra 35 points are added here.");
-	threeKind.setDescription("Add the total of all the dice.");
-	fourKind.setDescription("Add the total of all the dice.");
-	fullHouse.setDescription("25 points.");
-	smallStraight.setDescription("30 points.");
-	largeStraight.setDescription("40 points.");
-	yahtzee.setDescription("50 points.");
-	chance.setDescription("Add the total of all the dice.");
-	yahtzeeBonus.setDescription("For every aditional Yahtzee scored, add 100 points.");
-	grandTotal.setDescription("The total of all the categories.");
-	
-//Consider changing checkCompletion to take an argument for up to where to check
-//Why is yahtzee bonus score not showing? may be ui
-
-
 
 //Checks for a straight of a certain length (4 for small, 5 for large)
 //Sorts values, removes duplicates and checks for desired straight
@@ -501,3 +485,77 @@ function setYahtzee(){
 	}
 	console.log(diceValues);
 }
+
+
+  //**********************************************************************//
+ //							RUNTIME                                      //
+//**********************************************************************// 
+function newGame(){
+
+	console.log("NEW GAME");
+
+
+
+		die1 = new Dice(),
+		die2 = new Dice(),
+		die3 = new Dice(),
+		die4 = new Dice(),
+		die5 = new Dice(),
+		ones = new Category(),
+		twos = new Category(),
+		threes = new Category(),
+		fours = new Category(),
+		fives = new Category(),
+		sixes = new Category(),
+		subtotal = new Category(),
+		bonus = new Category(),
+		threeKind = new Category(),
+		fourKind = new Category(),
+		fullHouse = new Category(),
+		smallStraight = new Category(),
+		largeStraight = new Category(),
+		yahtzee = new Category(),
+		yahtzeeBonus = new Category(),
+		chance = new Category(),
+		grandTotal = new Category();
+		
+	 diceArray = [die1, die2, die3, die4, die5];
+	 categoryArray = [ones,twos,threes,fours,fives,sixes,threeKind,fourKind,fullHouse,smallStraight,largeStraight,yahtzee,chance,yahtzeeBonus];
+	 rollCounter = 0;	
+	 justScored = false;
+	 resetUI();
+}
+
+
+
+
+//	heldArray = [die1.is]
+	
+	// //Prints out the current roll
+	// for (var i=0; i<diceArray.length; i++){
+	// 	//console.log(diceArray[i].getValue());
+	// 	console.dir(diceArray[i]);
+	// }
+	
+		
+	
+	// ones.setDescription("The sum of all the dice with the value 1.");
+	// twos.setDescription("The sum of all the dice with the value 2.");
+	// threes.setDescription("The sum of all the dice with the value 3.");
+	// fours.setDescription("The sum of all the dice with the value 4.");
+	// fives.setDescription("The sum of all the dice with the value 5.");
+	// sixes.setDescription("The sum of all the dice with the valie 6.");
+	// subtotal.setDescription("The sum of all the scores 1-6.");
+	// bonus.setDescription("If the subtotal is over than 65, an extra 35 points are added here.");
+	// threeKind.setDescription("Add the total of all the dice.");
+	// fourKind.setDescription("Add the total of all the dice.");
+	// fullHouse.setDescription("25 points.");
+	// smallStraight.setDescription("30 points.");
+	// largeStraight.setDescription("40 points.");
+	// yahtzee.setDescription("50 points.");
+	// chance.setDescription("Add the total of all the dice.");
+	// yahtzeeBonus.setDescription("For every aditional Yahtzee scored, add 100 points.");
+	// grandTotal.setDescription("The total of all the categories.");
+	
+//Consider changing checkCompletion to take an argument for up to where to check
+//Why is yahtzee bonus score not showing? may be ui

@@ -7,6 +7,10 @@ body{
 	width:100%;
 }
 
+#content{
+	position:relative;
+}
+
 .dice{
 	cursor: pointer;
 	height:75px;
@@ -22,6 +26,22 @@ body{
 #diceContainer{
 	margin:2%;
 	margin-left: 15%;
+}
+
+#extras_container{
+	bottom:130px;
+	display: inline-block;
+	height:200px;
+	left:1400px;
+	position:absolute;
+	transition:left 0.5s;
+	width:100px;
+	z-index:2;
+}
+
+#extras_container.moved{
+	left:1200px;
+	transition:0.5s;
 }
 
 .held{
@@ -55,6 +75,10 @@ header:before{
 	z-index:-1;
 }
 
+.hidden{
+	display:none !important; 
+}
+
 html{
 	height:100%;
 	width:100%;
@@ -85,7 +109,7 @@ img{
 }
 
 
-#rollButton{
+.main_button{
 	background-color: #3C5193;
 	box-shadow:2px 2px 2px #383838;
 	color:#E8D1B7;
@@ -101,7 +125,7 @@ img{
 	z-index:2;	
 }
 
-#rollButton:hover{
+.main_button:hover{
 	background-color: #334479;
 	cursor:pointer;
 }
@@ -137,6 +161,10 @@ td{
 	text-align:center;
 }
 
+.category{
+	cursor:pointer;
+}
+
 .category:hover{
 	background-color:#00665E;
 	color:#fff;
@@ -161,11 +189,10 @@ th{
 	left:0;
 	opacity:0.75;
 	z-index:1;
+	transition:opacity 0.75;
 }
 
-.category{
-	cursor:pointer;
-}
+
 
 
 #rollCounter{

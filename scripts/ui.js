@@ -1,7 +1,6 @@
 run = function(){
 	$(document).ready(function(){
 		$rollButton = $("#rollButton");
-		$scoreButton = $("#scoreButton");
 		$dice = $(".dice");
 		$filter = $("#filter");
 		$category = $(".category");
@@ -9,28 +8,36 @@ run = function(){
 		$instructions_container = $("#instructions_container");
 		$main_container = $("#main_container");
 		$this = $(this);
-		$arrowPic = $("#arrowPic");
+		$newGameButton = $("#newGameButton"),
+		$extras_container = $("#extras_container"),
+		$rollCounter = $("#rollCounter"),
+		$score = $(".score");
 		
 		$rollButton.click(function (){
-		roll();
-		console.log(diceArray);
-		changeImage();
+			roll();
+			console.log(diceArray);
+			changeImage();
+			$filter.addClass("hidden");
+			$rollCounter.text(rollCounter);
 		});
 		
 		$category.on("click", function() {
-			console.log($(this).text());
-			var categoryID = parseInt($(this).attr("id"));
-			console.log(categoryID);
-			scoreCategory(categoryID);
-			$filter.css("display", "block")
-				.fadeTo(500,0.75);
-			$(this).next(".score").text(categoryArray[categoryID-1].getScore());
-			var isComplete = checkCompletion();
-			if(!isComplete){
-				$("#subtotal").next(".score").text(getSubtotal());
-			$scoreButton.click();
+			if(!justScored){
+				var $this = $(this),
+					categoryID = parseInt($this.attr("id"));
+
+				scoreCategory(categoryID);
+				$filter.css("display", "block")
+					.fadeTo(500,0.75);
+				$filter.removeClass("hidden");
+				$this.next(".score").text(categoryArray[categoryID].getScore());
+				if(!checkCompletion()){
+					$("#subtotal").next(".score").text(getSubtotal());
+				}
 			}
-			
+			else{
+				alert("You must roll again before scoring!");
+			}		
 		});
 		
 		$dice.on("click", function(){
@@ -45,21 +52,29 @@ run = function(){
 		});		
 
 			
-			$rollButton.click(function(){
-				$filter.css("display", "none")
-				.css("opacity", 0);
-				$("#rollCounter").text(rollCounter);
-			});
-			
-			$scoreButton.click(function(){
-				$filter.css("display", "block")
-				.fadeTo(500,0.75);
-	
-			});
+		// $rollButton.click(function(){
+		// 	$filter.css("display", "none")
+		// 	.css("opacity", 0);
+		// 	$rollCounter.text(rollCounter);
+		// });
+		
 			
 		$instructions_container.on("click", function(){
 			$instructions_container.toggleClass("expanded");
+			$("#extras_container").toggleClass("moved");
 		});
+
+		$newGameButton.one("click", function(){
+			var $this = $(this),
+			removedButton = $this.detach();
+			$("#rollButton").toggleClass("hidden");
+			$extras_container.append(removedButton);
+			$extras_container.removeClass("hidden");
+		});
+
+		$newGameButton.on("click", function(){
+			newGame();
+		});	
 		
 		
 	});
@@ -104,6 +119,17 @@ ui_id_to_logic = function(diceID){
 changeBonusDisplay = function(){
 	console.log("SSSS");
 	$("#14").next(".score").text(categoryArray[13].getScore());
+}
+
+//Edits the UI when a new game is started
+//Resets dice to default value, removes all held animations, clears scoreboard
+//IN:-
+//OUT:-
+function resetUI(){
+	$dice.removeClass("held");
+	changeImage();
+	$rollCounter.text(rollCounter);
+	$score.text("");
 }
 
 
