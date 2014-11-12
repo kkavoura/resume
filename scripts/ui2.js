@@ -12,7 +12,8 @@ $(document).ready(function(){
 		navigation = $(".navigation"),
 		about_me = $(".about_me"),
 		content = $(".content"),
-		work = $("#work");
+		work = $("#work"),
+		$xs_tab = $(".xs-tab");
 
 	
 	tab.on("click", function(){
@@ -132,12 +133,63 @@ $(document).ready(function(){
 
 
 
-//Makes a certain tab the only one visible by ensuring it is expanded and hiding all the others
-//IN: target tab to be displayed
-function expandedTab(target_tab){
-	tab.not(target_tab).addClass("hidden").removeClass("expanded");
-	target_tab.removeClass("hidden").addClass("expanded");
-}
-	
+	//Makes a certain tab the only one visible by ensuring it is expanded and hiding all the others
+	//IN: target tab to be displayed
+	function expandedTab(target_tab){
+		tab.not(target_tab).addClass("hidden").removeClass("expanded");
+		target_tab.removeClass("hidden").addClass("expanded");
+	}
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////	
+	// // media query event handler
+	if (matchMedia) {
+		var mq = window.matchMedia("(max-width: 800px)");
+		mq.addListener(WidthChange);
+		WidthChange(mq);
+	}
+
+// media query change
+	function WidthChange(mq) {
+
+		if (mq.matches) {
+			// window width is up to 480px
+			$("#main_container").on("click", function(){
+				$(this).toggleClass("expanded");
+			});
+		}
+		else {
+			$("#main_container").off("click");
+			// window width is > 480px
+			mq.removeListener()
+		}
+	}
+
+	//Handles the clicking on xs-tab(<=480)
+	$xs_tab.on("click", function(){
+		var $this = $(this);
+		
+		$this.toggleClass("expanded");
+		$this.children(".fa:first")
+			.toggleClass("expanded");
+		$this.children("div:first")  //CAN I COMMA SEPARATE OR SOMETHING??
+			.toggleClass("hidden");
+		$this.children(".xs_content_container")
+			.toggleClass("hidden");
+		if($this.hasClass("expanded")){
+			$('html, body').animate({
+	      	  scrollTop: $this.offset().top
+	   		}, 500);
+		}
+		$xs_tab.not($this)	
+			.removeClass("expanded")
+			.children("div")
+			.addClass("hidden");
+
+		$xs_tab.not($this)
+			.children(".fa")
+			.removeClass("expanded");
+
+	});
+
 	
 });
