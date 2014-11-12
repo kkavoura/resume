@@ -21,6 +21,7 @@
 body{
 	background-image:url('../images/wood_texture.jpg');
 	font-family: 'Open Sans Condensed', sans-serif;
+	margin: 0;
 }
 
 #comments{
@@ -99,14 +100,45 @@ body{
 	width:50%;
 }
 
+#contact_info>span:first-child{
+ 	display:inline-block;
+ 	margin-top:43%;
+}
+
+#contact_links{
+	height:100px;
+	left:75%;
+	margin-left: -56px;
+	margin-top: -50px;
+	position:absolute;
+	top:50%;
+}
+
+#contact_links>a{
+	color:#333;
+	margin:0 10px 0 10px;
+}
+
+#contact_links>a:hover{
+	color:#111;
+}
+
 #contact_nav:hover{
 	color:#47B56F;
 }
 
-#kiki{
- 	display:inline-block;
- 	margin-top:43%;
- }
+#contact_xs{
+	border:2px solid #47B56F;
+}
+
+#contact_xs>div:first-child{
+	background-color: #47B56F;
+}
+
+#contact_xs>.xs_content_container{
+	font-size: 1.3em;
+	text-align: center;
+}
 
 #degree{
 	color:#FE4455;
@@ -153,9 +185,25 @@ body{
 	color:#E34FDE;
 }
 
+#education_xs{
+	border:2px solid #FE4455;
+}
+
+#education_xs>div:first-child{
+	background-color: #FE4455;
+}
+
+.expanded{
+
+}
+
 #experience{
 	color:#9A58DB;
 	font-size:1.5em;
+}
+
+.fa-arrow-circle-o-right{
+	display:none;
 }
 
 h2{
@@ -181,8 +229,8 @@ h2{
 	box-shadow: 2px 5px 15px #333;
 	height:500px;
 	left:30%;
-	min-height:500px;
-	min-width:600px;
+	min-height:100px;
+/*	min-width:600px;*/
 	position:absolute;
 	text-align:center;
 	top:20%;
@@ -314,6 +362,14 @@ h2{
 	color:#2CB7F2;
 }
 
+#projects_xs{
+	border:2px solid #2CB7F2;
+}
+
+#projects_xs>div:first-child{
+	background-color:#2CB7F2;
+}
+
 .subcategory{
 	font-weight:bold;
 }
@@ -353,6 +409,33 @@ h2{
 
 #work_nav:hover{
 	color:#9A58DB;
+}
+
+#work_xs{
+	border: 2px solid #9A58DB;
+}
+
+#work_xs>div:first-child{
+	background-color: #9A58DB;
+}
+
+.xs_content_container{
+	margin:auto;
+	margin-bottom: 5%;
+	margin-top:5%;
+	width:85%;
+}
+
+.xs-tab{
+	background-color: white;
+	display:none;
+	height:19vh;
+	margin-top:1px;
+	min-height:100px;
+}
+
+.xs-tab>div:first-child{
+	height:50px;
 }
 
 
