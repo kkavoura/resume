@@ -153,10 +153,19 @@ $(document).ready(function(){
 	$window.resize(function(){ 
 		$this = $(this);
 		if(checkBreakpointJump(my_window.getWidth(), $this.width(), breakpoints)){
+			$xs_tab.removeClass("expanded");
+			$xs_tab.children(".fa")
+				.removeClass("expanded");
+			$xs_tab.children(".xs_content, div:first-child")
+				.addClass("hidden");
 			$xs_tab.off();
+			$med_content.children(".xs_content")
+				.remove();
+			$med_content.addClass("hidden");
 			main_container.off();
 			setHandlers($this.width());
 			my_window.storeWidth();
+			
 		};
 	});
 

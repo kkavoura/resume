@@ -118,24 +118,37 @@
 	.fa{
 		color:white;
 		left:50%;
-		margin-left: -31px;
-		margin-top:-24px;
 		position:absolute;
 		top:50%;
+	}
+
+	.fa-briefcase{
+		margin: -24px 0 0 -24px;
 	}
 
 	.fa-briefcase.expanded{
 		color: #9A58DB;
 	}
 
+	.fa-envelope{
+		margin: -24px 0 0 -24px;
+	}
+
 	.fa-envelope.expanded{
 		color:#47B56F;
 	}	
+
+	.fa-folder-open{
+		margin: -24px 0 0 -26px;
+	}
 
 	.fa-folder-open.expanded{
 		color:#2CB7F2;
 	}
 
+	.fa-graduation-cap{
+		margin:-24px 0 0 -31px;
+	}
 	.fa-graduation-cap.expanded{
 		color:#FE4455;
 	}
@@ -192,7 +205,7 @@
 		background-color: white;
 		border:2px solid transparent;
 		display:block;
-		font-size: 1.3em;
+		font-size: 1.2em;
 		height:auto;
 		margin-top:-7px;		
 		padding:0;
