@@ -1,5 +1,9 @@
 @media (max-width: 480px){
 
+	#hex_container{
+		display:none;
+	}
+
 	.fa{
 		left:50%;
 		margin-left: -31px;
@@ -98,6 +102,10 @@
 }
 
 @media (min-width: 481px) and (max-width: 900px){
+
+	#hex_container{
+		display:none;
+	}
 	
 	body{
 		background-image: none;
