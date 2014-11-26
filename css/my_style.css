@@ -1,4 +1,4 @@
-#about_me{
+#about_me .face{
 	background-color: #333;
 }
 
@@ -12,6 +12,15 @@
 
 #additional_experience ul{
 	list-style-type:none;
+}
+
+.back, .front{
+	backface-visibility:hidden;
+	transform:translateZ(1px);
+}
+
+.back{
+	transform:rotateY(180deg);
 }
 
 body{
@@ -29,9 +38,12 @@ body{
 }
 
 #contact{
-	background-color: #47B56F;
 	left: -19vw;
 	top: 0;
+}
+
+#contact .face{
+	background-color:#47B56F;
 }
 
 #contact_content{
@@ -106,9 +118,12 @@ body{
 }
 
 #education{
-	background-color: #FE4455;
 	top: 0;
 	left: 19vw;
+}
+
+#education .face{
+	background-color: #FE4455;	
 }
 
 
@@ -161,6 +176,27 @@ body{
 	margin:-40px 0 0 -43px;
 }
 
+.flippable{
+	cursor: pointer;
+	height: 100%;
+ 	position: absolute;
+  	transform-style: preserve-3d;
+  	transition: transform 1s;
+  	width: 100%;
+}
+
+.flippable .face{
+	backface-visibility: hidden;
+	display: block;
+	height: 100%;
+	position: absolute;
+	width: 100%;	
+}
+
+.flipped{
+	transform:rotateY(180deg);
+}
+
 h1{
 	color:white;
 	font-size: 4vw;
@@ -169,14 +205,13 @@ h1{
 
 #hex_container{
 	display:block;
-	top:55vh;
 	left:42.5vw;
-	cursor: pointer;
+	perspective:1000px;
+	top:55vh;
 }
 
 .hexagon,
 #hex_container {
-/*	cursor: pointer;*/
 	height: 10.4vw;
 	width: 18vw;
 	position: absolute;
@@ -191,7 +226,6 @@ h1{
 	 left: 0;
 	 top: 0;
 	 transform: rotate(60deg);
-	 transform-style:preserve-3d;
 	 background: inherit;
 	 z-index: -1;
 }
@@ -207,39 +241,6 @@ h1{
 	position: absolute;
 	top:50%;
 }
-
-#CB{
-	background-color: red;
-	left: -19vw;
-	top: 0;
-}
-
-.hexagon:hover{
-	transform:perspective(1000px) rotateY(180deg);
-	transition:1s;
-}
-
-
-/*.hexagon:hover{
-/*	backface-visibility:hidden;
-	transform: perspective( 1000px ) rotateY(180deg);
-	transform-style:preserve-3d;
-	transition:1s;
-}*/
-
-/*.hexagon:hover + .hexagon.back{
-	transform: perspective( 1000px ) rotateY(-180deg);
-	transition:1s;
-}*/
-
-/*.hexagon.back{
-	z-index:-2;
-}
-
-.hexagon.back:before,
-.hexagon.back:after{
-	z-index: -3;
-}*/
 
 h2{
 	margin:1%;
@@ -307,9 +308,12 @@ h2{
 }
 
 #projects{
-	background-color: #2CB7F2;
 	left: -9.5vw;
 	top: -16.5vw
+}
+
+#projects .face{
+	background-color:  #2CB7F2;
 }
 
 #projects_content{
@@ -354,9 +358,12 @@ h2{
 }
 
 #work{
-	background-color: #9A58DB;
 	left: 9.5vw;
 	top: -16.5vw;
+}
+
+#work .face{
+	background-color: #9A58DB;
 }
 
 

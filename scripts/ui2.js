@@ -17,9 +17,18 @@ $(document).ready(function(){
 		$window = $(window),
 		my_window = new CurrentWindow,
 		breakpoints = [0,480,900],
-		$hexagon = $(".hexagon");
+		$flippable = $(".flippable");
 
-		// $hexagon.on("click");
+
+	$flippable.on("mouseenter mouseleave", function(){
+		$this = $(this);
+		$this.toggleClass("flipped");
+	});
+
+	$flippable.on("click", function(){
+		$this = $(this);
+		$flippable.not($this).toggleClass("hidden");
+	});
 
 
 // Object keeping track of the width of the window to serve as comparison with current state 
@@ -186,5 +195,3 @@ $(document).ready(function(){
 		var my_element = target_element.remove();
 		new_parent.append(my_element);
 	}
-
-
