@@ -10,7 +10,6 @@ $(document).ready(function(){
 		projects = $("#projects"),
 		tab = $(".tab"),
 		navigation = $(".navigation"),
-		content = $(".content"),
 		work = $("#work"),
 		$xs_tab = $(".xs-tab"),
 		$med_content = $("#med_content"),
@@ -36,17 +35,18 @@ $(document).ready(function(){
 			hexID = $this.attr("id"),
 			myContent = '';
 
-		if(!has_content){
+		if(!has_content){	//If there is no content, add it, change colors
 			$lg_content.css({
 				"border-color" : newBorderColor,
 				"background-color" : newBgColor
 			});			
-			$myContent = $("#" + hexID + "_xs").children(".xs_content").clone(); //Retrieve copy of content from equivalent xs_tab	
+			$myContent = $("#" + hexID + "_xs").children(".content").clone(); //Retrieve copy of content from equivalent xs_tab	
+			console.log($myContent);
 			$myContent.removeClass("hidden");	
 			$lg_content.append($myContent); 
 		}
 		else{
-			$lg_content.children(".xs_content").remove();
+			$lg_content.children(".content").remove(); //If there is content, remove it
 		}
 
 		$flippable.not($this).toggleClass("hidden");
@@ -56,36 +56,18 @@ $(document).ready(function(){
 
 	});
 
-
-// Object keeping track of the width of the window to serve as comparison with current state 
-// Makes it possible to check if a breakpoint jump has occurred
-	function CurrentWindow(){
-		this.last_known_width = $window.width();
-
-		this.storeWidth = function(){
-			this.last_known_width = $window.width();
-		}
-
-		this.getWidth = function(){
-			return this.last_known_width;
-		}
-	}
-
-
-
-
 	
-	setHandlers($window.width());
-	$window.resize(function(){ 
+	setHandlers($window.width()); //Default call to set handlers for current width
+	$window.resize(function(){
 		$this = $(this);
-		if(checkBreakpointJump(my_window.getWidth(), $this.width(), breakpoints)){
-			$xs_tab.removeClass("expanded");
+		if(checkBreakpointJump(my_window.getWidth(), $this.width(), breakpoints)){ //If window size changes breakpoints, resets containers to default state
+			$xs_tab.removeClass("expanded");									   //so they transition properly, and resets event handlers to correct ones
 			$xs_tab.children(".fa")
 				.removeClass("expanded");
-			$xs_tab.children(".xs_content, div:first-child")
+			$xs_tab.children(".content, div:first-child")
 				.addClass("hidden");
 			$xs_tab.off();
-			$med_content.children(".xs_content")
+			$med_content.children(".content")
 				.remove();
 			$med_content.addClass("hidden");
 			main_container.off();
@@ -96,18 +78,9 @@ $(document).ready(function(){
 	});
 
 
-	//Makes a certain tab the only one visible by ensuring it is expanded and hiding all the others
-	//IN: target tab to be displayed
-	function expandedTab(target_tab){
-		tab.not(target_tab).addClass("hidden").removeClass("expanded");
-		target_tab.removeClass("hidden").addClass("expanded");
-	}
-
 	//Sets event handlers for elements based on the size of the window
 	//IN: width in pixels of current display window
 	//OUT:--
-
-	//If current window width jumps a breakpoint change the handlers accordingly
 	function setHandlers(window_width){
 		if(window_width<900){
 			console.log("small");
@@ -124,7 +97,6 @@ $(document).ready(function(){
 			//Handles the clicking on xs-tab
 			$xs_tab.on("click", function(){
 
-				$("#med_content").addClass("G");
 				var $this = $(this);
 				
 				$this.toggleClass("expanded");
@@ -132,7 +104,7 @@ $(document).ready(function(){
 					.toggleClass("expanded");
 				$this.children("div:first")  
 					.toggleClass("hidden");
-				$this.children(".xs_content")
+				$this.children(".content")
 					.toggleClass("hidden");
 
 				$xs_tab.not($this)	
@@ -159,13 +131,13 @@ $(document).ready(function(){
 
 			$xs_tab.on("click", function(){
 				var $this = $(this);
-				$med_content.children(".xs_content").remove();
-				$med_content.append($this.children(".xs_content").clone());
+				$med_content.children(".content").remove();
+				$med_content.append($this.children(".content").clone());
 
 				$med_content.removeClass();
 				if($this.hasClass("expanded")){
 					$med_content.addClass("hidden");
-					$med_content.children(".xs_content").remove();
+					$med_content.children(".content").remove();
 				}
 
 				switch($this.attr("id")){
@@ -196,6 +168,20 @@ $(document).ready(function(){
 		}
 
 	}
+
+// Object keeping track of the width of the window to serve as comparison with current state 
+// Makes it possible to check if a breakpoint jump has occurred
+	function CurrentWindow(){
+		this.last_known_width = $window.width();
+
+		this.storeWidth = function(){
+			this.last_known_width = $window.width();
+		}
+
+		this.getWidth = function(){
+			return this.last_known_width;
+		}
+	}
 	
 });
 
@@ -221,3 +207,4 @@ $(document).ready(function(){
 		var my_element = target_element.remove();
 		new_parent.append(my_element);
 	}
+
