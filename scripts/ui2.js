@@ -17,17 +17,43 @@ $(document).ready(function(){
 		$window = $(window),
 		my_window = new CurrentWindow,
 		breakpoints = [0,480,900],
-		$flippable = $(".flippable");
+		$flippable = $(".flippable"),
+		$body = $("body"),
+		$lg_content = $("#lg_content"),
+		has_content = false;
 
-
+	//Handle hex hover
 	$flippable.on("mouseenter mouseleave", function(){
 		$this = $(this);
 		$this.toggleClass("flipped");
 	});
 
+	//Handle hex clicking
 	$flippable.on("click", function(){
-		$this = $(this);
+		var $this = $(this),
+			newBorderColor = $this.children(".face").css("background-color"),
+			newBgColor = newBorderColor.replace(")", ", 0.5)").replace("rgb", "rgba"),
+			hexID = $this.attr("id"),
+			myContent = '';
+
+		if(!has_content){
+			$lg_content.css({
+				"border-color" : newBorderColor,
+				"background-color" : newBgColor
+			});			
+			$myContent = $("#" + hexID + "_xs").children(".xs_content").clone(); //Retrieve copy of content from equivalent xs_tab	
+			$myContent.removeClass("hidden");	
+			$lg_content.append($myContent); 
+		}
+		else{
+			$lg_content.children(".xs_content").remove();
+		}
+
 		$flippable.not($this).toggleClass("hidden");
+		$this.toggleClass("focused flipped");
+		$lg_content.toggleClass("offscreen");
+		has_content = !has_content;
+
 	});
 
 
