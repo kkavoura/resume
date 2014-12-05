@@ -8,6 +8,14 @@
 		font-size: 1.2em;
 	}
 
+	h1{
+		color:#333;
+		font-size: 2em;
+		margin-bottom: 0;
+		padding:0;
+		text-align: center;
+	}
+
 	#hex_container{
 		display:none;
 	}
@@ -42,13 +50,11 @@
 		color:#FE4455;
 	}
 
-	h1{
+	.fa-info-circle{
 		color:#333;
-		margin-bottom: 0;
-		padding:0;
-		text-align: center;
 	}
 
+/*
 	#main_container{
 		background-color: white;
 		box-shadow: none;
@@ -88,7 +94,7 @@
 
 	#main_container:not(.expanded) >p{
 		display:none;
-	}
+	}*/
 
 
 	.tab{
@@ -99,7 +105,6 @@
 		cursor:pointer;
 		display:block;
 		position:relative;
-/*		transition:0.3s height;*/
 	}
 
 	.xs-tab.expanded{
@@ -113,6 +118,16 @@
 
 	#hex_container{
 		display:none;
+	}
+
+	#about_me_xs{
+		border-color:transparent;
+		display:block;
+		height: auto;
+		margin-left: 0;
+		padding:0;
+		cursor: default;
+		width: 99vw;
 	}
 	
 	body{
@@ -169,6 +184,10 @@
 		color:#FE4455;
 	}
 
+	.fa-info-circle{
+		display: none;
+	}
+
 	h1{
 		color:#333;
 		margin-bottom: 0;
@@ -176,7 +195,7 @@
 		text-align: center;
 	}
 
-	#main_container{
+/*	#main_container{
 		background-color: white;
 		box-shadow: none;
 		cursor:pointer;
@@ -215,7 +234,7 @@
 
 	#main_container:not(.expanded) >p{
 		display:none;
-	}
+	}*/
 
 	#med_content{
 		background-color: white;
@@ -242,15 +261,19 @@
 	}
 
 
-	#xs_container>.xs-tab:first-child{
+/*	#xs_container>.xs-tab:first-child{
 		margin-left: 3vw;
-	}
+	}*/
 
 	.xs-tab{
 		cursor:pointer;
 		display:inline-block;
 		position:relative;
 		width:22vw;
+	}
+
+	.xs-tab:nth-child(2){
+		margin-left: 2vw;
 	}
 
 	.xs-tab.expanded{

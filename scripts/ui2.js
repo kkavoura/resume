@@ -19,7 +19,8 @@ $(document).ready(function(){
 		$flippable = $(".flippable"),
 		$body = $("body"),
 		$lg_content = $("#lg_content"),
-		has_content = false;
+		has_content = false,
+		$about_me_xs = $("#about_me_xs");
 
 	//Handle hex hover
 	$flippable.on("mouseenter mouseleave", function(){
@@ -82,18 +83,13 @@ $(document).ready(function(){
 	//IN: width in pixels of current display window
 	//OUT:--
 	function setHandlers(window_width){
-		if(window_width<900){
-			console.log("small");
-			main_container.removeClass("hidden");
-		}
+		// if(window_width<900){
+		// 	console.log("small");
+		// 	main_container.removeClass("hidden");
+		// }
 
 		if(window_width<=480){
-			if(!$("#home_nav").hasClass("hidden")){
-					$("#home_nav").click();
-			}
-			$("#main_container").on("click", function(){
-				$(this).toggleClass("expanded");
-			});
+
 			//Handles the clicking on xs-tab
 			$xs_tab.on("click", function(){
 
@@ -121,15 +117,12 @@ $(document).ready(function(){
 			      	  scrollTop: $this.offset().top
 			   		}, 500);
 				}
-
 			});
 		} 
 		else if(window_width<=900){
-			main_container.on("click", function(){
-				$(this).toggleClass("expanded");
-			});
-
-			$xs_tab.on("click", function(){
+			$about_me_xs.children(".content").removeClass("hidden");
+			
+			$xs_tab.not("#about_me_xs").on("click", function(){
 				var $this = $(this);
 				$med_content.children(".content").remove();
 				$med_content.append($this.children(".content").clone());
@@ -161,10 +154,14 @@ $(document).ready(function(){
 					.removeClass("expanded");
 				$this.toggleClass("expanded");
 				$med_content.children().removeClass("hidden");
+
+				$('html, body').animate({
+			    	scrollTop: $this.offset().top
+			   	}, 500);
 			});
 		}
 		else{
-			main_container.addClass("hidden");
+			// main_container.addClass("hidden");
 		}
 
 	}
