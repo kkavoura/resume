@@ -78,8 +78,9 @@ $(document).ready(function(){
 	
 	setHandlers($window.width()); //Default call to set handlers for current width
 	$window.resize(function(){
-		$this = $(this);
-		if(checkBreakpointJump(my_window.getWidth(), $this.width(), breakpoints)){ //If window size changes breakpoints, resets containers to default state
+		$this = $(this),
+		$thisWidth = $this.width();
+		if(checkBreakpointJump(my_window.getWidth(), $thisWidth, breakpoints)){ //If window size changes breakpoints, resets containers to default state
 			$xs_tab.removeClass("expanded");									   //so they transition properly, and resets event handlers to correct ones
 			$xs_tab.children(".fa")
 				.removeClass("expanded");
@@ -90,7 +91,7 @@ $(document).ready(function(){
 				.remove();
 			$med_content.addClass("hidden");
 			main_container.off();
-			setHandlers($this.width());
+			setHandlers($thisWidth);
 			my_window.storeWidth();
 			
 		};
