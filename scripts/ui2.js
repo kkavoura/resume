@@ -20,7 +20,9 @@ $(document).ready(function(){
 		$body = $("body"),
 		$lg_content = $("#lg_content"),
 		has_content = false,
-		$about_me_xs = $("#about_me_xs");
+		$about_me_xs = $("#about_me_xs"),
+		$backButton = $("#backButton"),
+		$lastClickedHex = '';
 
 	//Handle hex hover
 	$flippable.on("mouseenter mouseleave", function(){
@@ -40,9 +42,14 @@ $(document).ready(function(){
 			$lg_content.css({
 				"border-color" : newBorderColor,
 				"background-color" : newBgColor
-			});			
+			});		
+			if(hexID === "about_me"){
+				$lg_content.css("background-color", "rgba(51,51,51,0.2)");
+			}	
 			$myContent = $("#" + hexID + "_xs").children(".content").clone(); //Retrieve copy of content from equivalent xs_tab	
-			console.log($myContent);
+			if(hexID === "projects" || hexID === "education"){
+				$myContent.children("h2").remove();
+			}
 			$myContent.removeClass("hidden");	
 			$lg_content.append($myContent); 
 		}
@@ -50,12 +57,23 @@ $(document).ready(function(){
 			$lg_content.children(".content").remove(); //If there is content, remove it
 		}
 
-		$flippable.not($this).toggleClass("hidden");
+		$flippable.not($this).toggleClass("hidden");	//Reset content to original state
 		$this.toggleClass("focused flipped");
 		$lg_content.toggleClass("offscreen");
 		has_content = !has_content;
+		$lastClickedHex = $this;
+	});
+
+	$backButton.on("click", function(){				//Reset content to original state
+		$lg_content.toggleClass("offscreen");
+		$flippable.removeClass("hidden");
+		$lastClickedHex.toggleClass("focused flipped");
+		has_content = !has_content;
+		$lg_content.children(".content").remove();
 
 	});
+
+	
 
 	
 	setHandlers($window.width()); //Default call to set handlers for current width

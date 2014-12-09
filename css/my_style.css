@@ -1,4 +1,7 @@
-/*************************************/
+a{
+	text-decoration: none;
+}
+
 #about_me{
 	top:0;
 	left:0;
@@ -143,7 +146,7 @@ body{
 	margin:auto;
 	margin-bottom: 5%;
 	margin-top:5%;
-	width:85%;
+	width:65vw;
 }
 
 /*.content span{
@@ -209,6 +212,24 @@ body{
 	font-size:1.5em;
 }
 
+.fa.external_link{
+	color:#333;
+	margin:5vh 2vw 0 0;
+	position:static;
+}
+
+.fa-arrow-left{
+	bottom:5%;
+	color:#333;
+	left: 4%;
+	position: absolute;
+}
+
+.fa-arrow-left:hover{
+	color:white;
+	cursor: pointer;
+}
+
 .fa-envelope, .fa-briefcase{
 	margin:-40px 0 0 -40px;
 }
@@ -223,6 +244,10 @@ body{
 
 .fa-folder-open{
 	margin:-40px 0 0 -43px;
+}
+
+.fa-info-circle{
+	
 }
 
 .flippable{
@@ -322,7 +347,7 @@ h2{
 }
 
 #lg_content .content{
-	margin-left: 9vw;
+	margin-left: 12vw;
 }
 
 #med_content{
