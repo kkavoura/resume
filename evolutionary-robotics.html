@@ -2,10 +2,14 @@
 <html>
 	<head>
 		<title>Evolutionary Robotics project</title>
-		<link type="text/css" rel="stylesheet" href="css/projects_style.css">
+		<link type="text/css" rel="stylesheet" href="css/robotics_style.css">
+<!-- 		<link type="text/css" rel="stylesheet" href="css/my_style.css"> -->
+		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<script src="scripts/ui2.js"></script>
+		<script type="text/javascript" src="scripts/ui2.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	</head>
 	<body>
 		<header>
@@ -13,37 +17,45 @@
 			<h2>Evolution of robot displacement and comparison between a quadruped and hexapod model</h2>
 		</header>
 		
-		<div id="main_container">
-			<p>During my time at the University of Vermont I was fortunate enough to have the opportunity to take a course on Evolutionary Robotics.
-				This involved a semester long project in which we had to develop an artificial neural network in Python, which could then be connected
-				to a virtual robot created with C++ in Open Dynamics Engine. After creating a functional robot, the goal was to use randomized input
-				and have the robot evolve a certain desired behavior. I chose to study the evolution of displacement and compare the results found in 
-				quadruped vs hexapedal units.</p>
+		<div id="main_container" class="tab">
+			<div class="icon">
+				<h2>Summary</h2>
+			</div>
+			<div class="tab-content hidden">
+				<p>During my time at the University of Vermont I was fortunate enough to have the opportunity to take a course on Evolutionary Robotics.
+					This involved a semester long project in which we had to develop an artificial neural network in Python, which could then be connected
+					to a virtual robot created with C++ in Open Dynamics Engine. After creating a functional robot, the goal was to use randomized input
+					and have the robot evolve a certain desired behavior. I chose to study the evolution of displacement and compare the results found in 
+					quadruped vs hexapedal units.</p>
 
-				<p>Initially, using Python, a hill climbing optimization technique was used to develop a model 
-					with the maximum possible fitness over the course of 5000 generations. An artificial neural network was created and subsequently plotted through 
-					the use of MATPLOTLIB. The plotted representation is a directed graph with the nodes representing individual neurons and 
-					the lines connecting them representing synapses. The two colors represent positive or negative weights and the width represents the magnitude.
-					Following this stage, the hill climber algorithm and the artificial neural network were combined, and with a small perturbation in each generation, it
-					was evolved to produce result based on a certain fitness function.
-				</p>
-				<p>In the next stage of the project, using C++ and Open Dynamics Engine a virtual robot was created using a body and then adding limbs,
-					joints and finally motors. A randomized neural network and sensors are added to the limbs in order for the robot to be able to tell if
-					a certain limb is on the ground or not. Randomly weighted synapses are added to the robot, connecting each sensor to each motor. Despite the 
-					randomized neural network, this	will result in the same movement every time a leg touches the ground. </p>
-					<p>The C++ and Python codes then communicate through text files in order to connect the hillclimber, artificial neural network and robot.
-						The hillclimber creates random synaptic weights which are used in the neural network. The robot then uses these values in the network 
-						and 1000 timesteps are run in which the robot moves in a certain direction based on the motions performed. The distance travelled from 
-						the point of origin is then returned as the current fitness to the hillclimber via a text file. The values previously sent are duplicated 
-						and slightly mutated and sent again for a new iteration.</p>
-				<p>This code was intended to run overnight, for thousands of generations, until theoretically a model that has evolve the desired behavior will 
-					have occured. I had some technical issues with my computer, which cause the program to crash every few hours, so I never got a a very evolved 
-					point in my results. However, I found that the difference from beginning to end was significant and had the code run for as long as it should have,
-					the results would have been a lot more drastic.</p>
+					<p>Initially, using Python, a hill climbing optimization technique was used to develop a model 
+						with the maximum possible fitness over the course of 5000 generations. An artificial neural network was created and subsequently plotted through 
+						the use of MATPLOTLIB. The plotted representation is a directed graph with the nodes representing individual neurons and 
+						the lines connecting them representing synapses. The two colors represent positive or negative weights and the width represents the magnitude.
+						Following this stage, the hill climber algorithm and the artificial neural network were combined, and with a small perturbation in each generation, it
+						was evolved to produce result based on a certain fitness function.
+					</p>
+					<p>In the next stage of the project, using C++ and Open Dynamics Engine a virtual robot was created using a body and then adding limbs,
+						joints and finally motors. A randomized neural network and sensors are added to the limbs in order for the robot to be able to tell if
+						a certain limb is on the ground or not. Randomly weighted synapses are added to the robot, connecting each sensor to each motor. Despite the 
+						randomized neural network, this	will result in the same movement every time a leg touches the ground. </p>
+						<p>The C++ and Python codes then communicate through text files in order to connect the hillclimber, artificial neural network and robot.
+							The hillclimber creates random synaptic weights which are used in the neural network. The robot then uses these values in the network 
+							and 1000 timesteps are run in which the robot moves in a certain direction based on the motions performed. The distance travelled from 
+							the point of origin is then returned as the current fitness to the hillclimber via a text file. The values previously sent are duplicated 
+							and slightly mutated and sent again for a new iteration.</p>
+					<p>This code was intended to run overnight, for thousands of generations, until theoretically a model that has evolve the desired behavior will 
+						have occured. I had some technical issues with my computer, which cause the program to crash every few hours, so I never got a a very evolved 
+						point in my results. However, I found that the difference from beginning to end was significant and had the code run for as long as it should have,
+						the results would have been a lot more drastic.</p>
+			</div>
 		</div>
 		
-		<div id="media_container">
-		
+		<div id="media_container" class="tab">
+			<div class="icon">
+				<i class="fa fa-video-camera fa-3x"></i>
+			</div>
+			<div class="tab-content hidden">		
 				<h2>Quadruped:</h2>
 				<div>
 					<iframe src="http://www.youtube.com/embed/oBKy0c0CG1M?rel=0" frameborder="0" allowfullscreen></iframe>
@@ -54,9 +66,32 @@
 					<iframe src="http://www.youtube.com/embed/RWQA2p7QdTA?rel=0" frameborder="0" allowfullscreen></iframe>
 					<iframe src="http://www.youtube.com/embed/pCdDwxMsg0o?rel=0" frameborder="0" allowfullscreen></iframe>
 				</div>
-				
-				<p>For more information about the experiment, including specific methods and references check out my <a href="etc/evolutionary_robotics_report.pdf">Report (PDF)</a></p>
+			</div>
+		</div>
+
+		<div class="tab" id="picture_container">
+			<div class="icon">
+				<i class="fa fa-picture-o fa-3x"></i>
+			</div>
+			<div class="tab-content hidden">
+				<img src="images/ANN.png">
+				<p class="image-description">Representation of the Artificial Neural Network used in the virtual robot model. Vertices represent
+					different nodes in the ANN, corresponding to various components of the robot, such as limbs, joints, etc. The widths of the edges represent the strength of the connection, while the colors represent either positive or negative values. 
+				</p>
+				<img src="images/hillclimber.png">
+				<p class="image-description">Graphical representation of the hillclimber algorithm run over the course of 5,000 generations. Each different colored line corresponds to a different iteration of the program. Combining the hill climber with the ANN, we are able to evolve the ANN towards a specific desired behavior.
+				</p>
+			</div>
 		</div>	
+		<div class="tab" id="pdf_container">
+			<div class="icon">
+				<h2>PDF Report</h2>
+			</div>
+			<div class="tab-content hidden">
+				<p>For more information about the experiment, including specific methods and references check out my <a href="etc/evolutionary_robotics_report.pdf">Report (PDF)</a></p>
+			</div>
+		</div>
+		<div id="content" class="hidden"></div>
 
 	</body>
 </html>

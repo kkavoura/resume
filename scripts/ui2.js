@@ -22,7 +22,15 @@ $(document).ready(function(){
 		has_content = false,
 		$about_me_xs = $("#about_me_xs"),
 		$backButton = $("#backButton"),
-		$lastClickedHex = '';
+		$lastClickedHex = '',
+		$tab = $(".tab"),
+		$content=$("#content");
+
+
+	if($window.width()>=900){
+		$(".tab").children(".tab-content")
+			.removeClass("hidden");
+	} 
 
 	//Handle hex hover
 	$flippable.on("mouseenter mouseleave", function(){
@@ -80,6 +88,8 @@ $(document).ready(function(){
 	$window.resize(function(){
 		$this = $(this),
 		$thisWidth = $this.width();
+
+
 		if(checkBreakpointJump(my_window.getWidth(), $thisWidth, breakpoints)){ //If window size changes breakpoints, resets containers to default state
 			$xs_tab.removeClass("expanded");									   //so they transition properly, and resets event handlers to correct ones
 			$xs_tab.children(".fa")
@@ -90,9 +100,25 @@ $(document).ready(function(){
 			$med_content.children(".content")
 				.remove();
 			$med_content.addClass("hidden");
-			main_container.off();
+
+			//robotics handler
+			$tab.off();
+			$tab.removeClass("expanded")
+				.children(".icon")
+				.removeClass("expanded")
+				.children()
+				.removeClass("expanded");
+			$tab.children(".tab-content").addClass("hidden");
+			$content.addClass("hidden")
+				.children()
+				.remove();
 			setHandlers($thisWidth);
 			my_window.storeWidth();
+
+		if($window.width()>=900){
+			$(".tab").children(".tab-content")
+				.removeClass("hidden");
+	}
 			
 		};
 	});
@@ -102,10 +128,6 @@ $(document).ready(function(){
 	//IN: width in pixels of current display window
 	//OUT:--
 	function setHandlers(window_width){
-		// if(window_width<900){
-		// 	console.log("small");
-		// 	main_container.removeClass("hidden");
-		// }
 
 		if(window_width<=480){
 
@@ -137,6 +159,35 @@ $(document).ready(function(){
 			   		}, 500);
 				}
 			});
+
+			//Robotics handlers
+			$tab.on("click", function(){
+				var $this = $(this);			//Expand tab to show content
+				$this.toggleClass("expanded");
+				$this.children(".icon")
+					.toggleClass("expanded")
+					.children(".fa, h2")
+					.toggleClass("expanded");
+				$this.children(".tab-content")
+					.toggleClass("hidden");
+				$tab.not($this)					//Minimize all other tabs and hide content
+					.removeClass("expanded")
+					.children(".icon")
+					.removeClass("expanded")
+					.children(".fa, h2")
+					.removeClass("expanded");
+				$tab.not($this)
+					.children(".tab-content")
+					.addClass("hidden");
+
+
+				if($this.hasClass("expanded")){	//Scroll to top of clicked tab if enough room
+					$('html, body').animate({
+			      	  scrollTop: $this.offset().top
+			   		}, 500);
+				}
+			});
+
 		} 
 		else if(window_width<=900){
 			$about_me_xs.children(".content").removeClass("hidden");
@@ -178,6 +229,18 @@ $(document).ready(function(){
 			    	scrollTop: $this.offset().top
 			   	}, 500);
 			});
+
+			//robotics handlers
+			$tab.on("click", function(){
+				var $this = $(this),
+					selectedContent = $this.children(".tab-content").children().clone();
+				selectedContent.removeClass("hidden");
+				$content.removeClass("hidden");
+				$content.empty();
+				$content.append(selectedContent);
+				$this.addClass("highlighted");
+				$tab.not($this).removeClass("highlighted");
+			});
 		}
 		else{
 			// main_container.addClass("hidden");
@@ -214,13 +277,3 @@ $(document).ready(function(){
 		return false;
 
 	}
-
-	//Moves DOM elements from one parent to another
-	//IN:  target JQUERY DOM element to be moved,
-	//	   JQUERY parent to which to append target DOM element
-	//OUT:--
-	function relocate(target_element, new_parent){
-		var my_element = target_element.remove();
-		new_parent.append(my_element);
-	}
-
