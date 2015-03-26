@@ -4,9 +4,20 @@ body {
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 1.5em;
   margin: 0;
-  overflow: hidden;
   padding: 0;
   width: 100%; }
+
+.button {
+  background-color: #B2EBF2;
+  box-sizing: border-box;
+  color: #333;
+  float: left;
+  height: 50px;
+  margin: 20px 0 0 10%;
+  padding-top: 2%;
+  position: relative;
+  text-align: center;
+  width: 35%; }
 
 #buttonContainer {
   height: 100px;
@@ -20,10 +31,10 @@ body {
   border-radius: 7px;
   box-sizing: border-box;
   float: left;
-  height: 29vw;
+  height: 27vw;
   margin: 5vw 2vw 2vw 2vw;
   position: relative;
-  width: 29vw; }
+  width: 27vw; }
 
 .dice:nth-child(4) {
   margin-left: 20vw; }
@@ -71,8 +82,8 @@ header {
   display: none !important; }
 
 img {
-  height: 29vw;
-  width: 29vw; }
+  height: 27vw;
+  width: 27vw; }
 
 #instructions_container {
   background-color: #B2EBF2;
@@ -122,16 +133,24 @@ img {
 #new_game_button {
   padding-top: 5px; }
 
-.button {
-  background-color: #B2EBF2;
-  color: #333;
-  float: left;
-  height: 50px;
-  margin: 20px 0 0 10%;
-  padding-top: 13px;
-  position: relative;
-  text-align: center;
-  width: 35%; }
+.roll-counter-indicator {
+  background-color: green;
+  height: 31%;
+  position: absolute;
+  top: -65%;
+  width: 25%; }
+
+.roll-counter-indicator:nth-child(1) {
+  left: 6.25%; }
+
+.roll-counter-indicator:nth-child(2) {
+  left: 37.5%; }
+
+.roll-counter-indicator:nth-child(3) {
+  left: 68.75%; }
+
+.roll-counter-indicator.in-use {
+  background-color: red; }
 
 #scoreBoardContainer {
   margin-top: 20px; }
@@ -215,7 +234,10 @@ th, td {
 
   img {
     height: 15vw;
-    width: 15vw; } }
+    width: 15vw; }
+
+  #score_button {
+    display: none; } }
 @media (min-width: 900px) {
   body {
     background-image: url("../images/footer_lodyas.png");

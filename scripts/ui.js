@@ -1,22 +1,25 @@
 run = function(){
 	$(document).ready(function(){
-		$rollButton = $("#rollButton");
-		$dice = $(".dice");
-		$category = $(".category");
-		$yahtzee = $("#12");
-		$instructions_container = $("#instructions_container");
-		$main_container = $("#main_container");
-		$this = $(this);
-		$newGameButton = $("#new_game_button"),
-		$extras_container = $("#extras_container"),
-		// $rollCounter = $("#rollCounter"),
-		$score = $(".score"),
-		$window = $(window),
-		$menu = $("#menu"),
-		$score_selection = $("#score_selection");
+		var firstRoll = false,
+			$rollButton = $("#rollButton"),
+			$dice = $(".dice"),
+			$category = $(".category"),
+			$yahtzee = $("#12"),
+			$instructions_container = $("#instructions_container"),
+			$main_container = $("#main_container"),
+			$this = $(this);
+			$newGameButton = $("#new_game_button"),
+			$extras_container = $("#extras_container"),
+			$score = $(".score"),
+			$window = $(window),
+			$menu = $("#menu"),
+			$score_selection = $("#score_selection");
 		
+		//Rolling and animating dice roll
 		$rollButton.click(function(){
+			firstRoll=true;
 			if(rollCounter!=3){
+				$(".roll-counter-indicator:nth-child("+(rollCounter+1)+")").addClass("in-use");
 				randomizeImages(function(){
 					roll();
 					changeImage();
@@ -29,7 +32,13 @@ run = function(){
 			}
 		});
 		
+		//Clicking a category in the table enters a score in the corresponding cell and changes
+		//the background to opaque. 
 		$category.on("click", function() {
+			if(!firstRoll){
+				alert("Must roll before scoring, please try again!");
+				return;
+			}
 			var success = false;
 			if(!justScored){
 				var $this = $(this),
@@ -42,22 +51,15 @@ run = function(){
 					$this.next(".score")
 						.addClass("scored")
 						.text(categoryArray[categoryID].getScore());
-					$("#subtotal").next(".score").text(getSubtotal());
 					setBonus();
 					$("#bonus").next(".score").text(bonus.getScore());				
 					$("#13").next(".score").text(yahtzeeBonus.getScore());
-					
-					if(!checkCompletion()){
-						$filter.css("display", "block")
-							.fadeTo(500,0.75)
-							.removeClass("hidden");
-					}
-					else{
-						$("#bonus").next(".score").text(bonus.getScore());
-						$filter.css("display", "block")
-							.fadeTo(500,0)
-							.removeClass("hidden");
-						$rollButton.addClass("hidden");
+					$(".roll-counter-indicator").removeClass("in-use"); //Reset roll counter indicator
+
+					if(categoryID>=0 && categoryID<=5){  //Update subtotal and make it visible if numbers category clicked
+						$("#subtotal").next(".score")
+							.addClass("scored")
+							.text(getSubtotal());
 					}
 				}				
 			}
@@ -78,17 +80,21 @@ run = function(){
 			}
 		});
 
+		//Reset everything and start new game
 		$newGameButton.on("click", function(){
 			newGame();
 			$("#rollButton").removeClass("hidden");
+			$(".roll-counter-indicator")
+				.removeClass("hidden")
+				.removeClass("in-use");
 			$category.addClass("active");
 			$menu.toggleClass("expanded");
+			resetUI();
+			firstRoll=false;
 		});	
 		
 		
-	});
-
-/****************************************************************!!***************************************************************/
+	/****************************************************************!!***************************************************************/
 
 	$(".fa-bars").on("click", function(){
 		$menu.toggleClass("expanded");
@@ -124,13 +130,7 @@ run = function(){
 		$score_selection.toggleClass("hidden");
 	});
 
-	//Testing testing
-	$score.on("click", function(){
-		$(this).toggleClass("scored");
-	});
 
-
-}
 
 //Changes the images on the dice to match the current values
 //IN: --
@@ -200,5 +200,6 @@ function resetUI(){
 		.text("")
 		.removeClass("scored");
 }
+});}
 
 addLoadEvent(run);

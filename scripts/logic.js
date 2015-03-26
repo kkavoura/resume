@@ -140,8 +140,8 @@ function clearHeld(){
 // 10: Large straight
 // 11: Yahtzee
 // 12: Chance
-//IN: nummber correspoding to category to be scored(int)
-//OUT: --
+//IN: number correspoding to category to be scored(int)
+//OUT: bool representing success of scoring category
 function scoreCategory(number){
 	var success = false;
 	
@@ -491,7 +491,6 @@ function newGame(){
 	 rollCounter = 0;	
 	 console.log("rollcounter", rollCounter);
 	 justScored = false;
-	 resetUI();
 }
 
 
