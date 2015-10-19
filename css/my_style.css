@@ -267,8 +267,19 @@ body{
 	width: 100%;	
 }
 
+.flipped .back{
+	-ms-transform:rotateY(360deg);
+	-ms-transition:transform 1s;
+}
+
+.flipped .front{
+	-ms-transform:rotateY(180deg);
+	-ms-transition:transform 1s;
+}
+
 .flipped{
-	transform:rotateY(180deg);
+	-webkit-transform:rotateY(180deg);
+	-mz-transform:rotateY(180deg);
 }
 
 h1{
