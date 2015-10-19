@@ -279,7 +279,7 @@ body{
 
 .flipped{
 	-webkit-transform:rotateY(180deg);
-	-mz-transform:rotateY(180deg);
+	-moz-transform:rotateY(180deg);
 }
 
 h1{
